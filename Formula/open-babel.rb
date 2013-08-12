@@ -32,7 +32,7 @@ class OpenBabel < Formula
     args << "-DRUN_SWIG=ON" if build.with?('python') || build.with?('java')
     args << "-DJAVA_BINDINGS=ON" if build.with? 'java'
     args << "-DBUILD_GUI=ON" if build.with? 'wxmac'
-    
+
     # Automatic path detection for InChI and Cairo is fixed after v2.3.2
     if not build.head?
       args << "-DINCHI_INCLUDE_DIR='#{HOMEBREW_PREFIX}/include/inchi/'"
@@ -40,22 +40,22 @@ class OpenBabel < Formula
       args << "-DCAIRO_INCLUDE_DIRS='#{HOMEBREW_PREFIX}/include/cairo'" if build.with? 'cairo'
       args << "-DCAIRO_LIBRARIES='#{HOMEBREW_PREFIX}/lib/libcairo.dylib'" if build.with? 'cairo'
     end
-    
+
     python do
       args << "-DPYTHON_BINDINGS=ON"
       args << "-DPYTHON_INCLUDE_DIR='#{python.incdir}'"
       args << "-DPYTHON_LIBRARY='#{python.libdir}/lib#{python.xy}.dylib'"
       args << "-DPYTHON_PACKAGES_PATH='#{python.site_packages}'"
     end
-    
+
     args << '..'
-    
+
     mkdir 'build' do
       system "cmake", *args
       system "make"
       system "make install"
     end
-    
+
     python do
       python.site_packages.install lib/'openbabel.py', lib/'pybel.py', lib/'_openbabel.so'
     end
