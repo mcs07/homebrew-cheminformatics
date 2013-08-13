@@ -7,16 +7,13 @@ class Opsin < Formula
 
   def install
     libexec.install "opsin-1.5.0-jar-with-dependencies.jar"
-    (bin+"opsin").write <<-EOS.undent
-      #!/bin/sh
-      java -jar "#{libexec}/opsin-1.5.0-jar-with-dependencies.jar" "$@"
-    EOS
+    bin.write_jar_script libexec/"opsin-1.5.0-jar-with-dependencies.jar", "opsin"
   end
 
   def caveats; <<-EOS.undent
     The OPSIN jar file has been installed to:
       #{libexec}/opsin-1.5.0-jar-with-dependencies.jar
-    This may need to be added to the java CLASSPATH environment variable.
+    You may wish to add this to the java CLASSPATH environment variable.
     OPSIN can be run from the command line using the `opsin` tool. For help use:
       opsin -h
     EOS
