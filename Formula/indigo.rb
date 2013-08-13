@@ -4,11 +4,13 @@ class Indigo < Formula
   homepage 'http://ggasoftware.com/opensource/indigo'
   url 'https://github.com/ggasoftware/indigo.git', :tag => 'indigo-1.1.11'
   head 'https://github.com/ggasoftware/indigo.git', :branch => 'master'
-  version '1.1.11'
-  sha1 ''
+
+  option 'with-java',   'Build with Java language bindings'
+  option 'with-python', 'Build with Python language bindings'
 
   depends_on 'cmake' => :build
-  depends_on :python
+  depends_on :python => :optional
+  depends_on 'maven' if build.with? 'java'
 
   def install
     mkdir 'build-lib' do
@@ -29,6 +31,42 @@ class Indigo < Formula
     include.install 'api/indigo.h'
     include.install 'api/plugins/inchi/indigo-inchi.h'
     include.install 'api/plugins/renderer/indigo-renderer.h'
+
+    python do
+      python.site_packages.install 'api/python/indigo.py'
+      python.site_packages.install 'api/plugins/inchi/python/indigo_inchi.py'
+      python.site_packages.install 'api/plugins/renderer/python/indigo_renderer.py'
+    end
+
+    if build.with? 'java'
+      ver = /SET\(INDIGO_VERSION "(.+?)"/.match(File.read('api/indigo-version.cmake'))[1]
+      cd 'api/java' do
+        system "mvn", "versions:set", "-DnewVersion=#{ver}"
+        system "mvn", "clean", "package", "install", "-Dmaven.test.skip=true"
+        libexec.install "target/indigo-#{ver}.jar"
+      end
+      cd 'api/plugins/renderer/java' do
+        system "mvn", "versions:set", "-DnewVersion=#{ver}"
+        system "mvn", "clean", "package", "install", "-Dmaven.test.skip=true"
+        libexec.install "target/indigo-renderer-#{ver}.jar"
+      end
+      cd 'api/plugins/inchi/java' do
+        system "mvn", "versions:set", "-DnewVersion=#{ver}"
+        system "mvn", "clean", "package", "install", "-Dmaven.test.skip=true"
+        libexec.install "target/indigo-inchi-#{ver}.jar"
+      end
+      libexec.install "common/jna/jna.jar"
+    end
+  end
+
+  def caveats
+    if build.with? 'java'
+      s = <<-EOS.undent
+        Java language bindings have been installed to:
+            #{libexec}
+        You may wish to add them to the java CLASSPATH environment variable.
+      EOS
+    end
   end
 
   test do
