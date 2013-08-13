@@ -8,6 +8,7 @@ class OpenBabel < Formula
 
   option 'with-cairo',  'Build with PNG depiction'
   option 'with-java',   'Build with Java language bindings'
+  option 'with-python', 'Build with Python language bindings'
 
   depends_on 'pkg-config' => :build
   depends_on 'cmake' => :build
