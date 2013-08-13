@@ -28,7 +28,7 @@ class OpenBabel < Formula
   end
 
   def install
-    args = %W[ -DCMAKE_INSTALL_PREFIX=#{prefix} ]
+    args = std_cmake_parameters.split
     args << "-DOPENBABEL_USE_SYSTEM_INCHI=ON"
     args << "-DRUN_SWIG=ON" if build.with?('python') || build.with?('java')
     args << "-DJAVA_BINDINGS=ON" if build.with? 'java'
