@@ -28,6 +28,7 @@ class OpenBabel < Formula
   end
 
   def install
+    ENV.append 'CXXFLAGS', "-stdlib=libstdc++"
     args = std_cmake_parameters.split
     args << "-DOPENBABEL_USE_SYSTEM_INCHI=ON"
     args << "-DRUN_SWIG=ON" if build.with?('python') || build.with?('java')
