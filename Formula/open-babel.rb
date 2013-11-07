@@ -20,18 +20,16 @@ class OpenBabel < Formula
 
   def patches
     urls = []
-    if !build.head?
+    if not build.head?
       # Patch to fix Molecule.draw() in pybel in accordance with upstream commit df59c4a630cf753723d1318c40479d48b7507e1c
       urls << "https://gist.github.com/fredrikw/5858168/raw"
-    else
-      # Patch to prevent segmentation faults in HEAD
-      urls << "https://gist.github.com/mcs07/7264376/raw"
     end
     return urls
   end
 
   def install
-    ENV.append 'CXXFLAGS', "-stdlib=libstdc++"
+    # libc++ compatability fixed after v2.3.2
+    ENV.append 'CXXFLAGS', "-stdlib=libstdc++" if not build.head?
     args = std_cmake_parameters.split
     args << "-DOPENBABEL_USE_SYSTEM_INCHI=ON"
     args << "-DRUN_SWIG=ON" if build.with?('python') || build.with?('java')
@@ -62,7 +60,7 @@ class OpenBabel < Formula
     end
 
     # Python install to site-packages fixed after v2.3.2
-    if build.with?('python') && !build.head? 
+    if build.with?('python') && !build.head?
       python.site_packages.install lib/'openbabel.py', lib/'pybel.py', lib/'_openbabel.so'
     end
   end
