@@ -2,8 +2,8 @@ require 'formula'
 
 class Rdkit < Formula
   homepage 'http://rdkit.org/'
-  url 'http://downloads.sourceforge.net/projects/rdkit/files/rdkit/Q2_2013/RDKit_2013_06_1.tgz'
-  sha1 '4c69afe1a93bd7529db65597a70515cf28dde6a3'
+  url 'http://sourceforge.net/projects/rdkit/files/rdkit/Q3_2013/RDKit_2013_09_1.tgz/download'
+  sha1 '81b546a7b96bd3dd25ddb85a45e77223cf800e40'
   head 'https://github.com/rdkit/rdkit.git'
 
   option 'without-python', 'Build without Python language bindings'
@@ -17,6 +17,10 @@ class Rdkit < Formula
   depends_on 'numpy' => :python if build.with? 'python'
   depends_on 'boost'
   depends_on 'swig' => :build
+
+  def patches
+    "https://gist.github.com/mcs07/7334872/raw" if not build.head?
+  end
 
   def install
     args = std_cmake_parameters.split
