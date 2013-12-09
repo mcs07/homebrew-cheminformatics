@@ -14,7 +14,7 @@ class Osra < Formula
   depends_on 'jpeg'
   depends_on 'ocrad'
   depends_on 'tclap'
-  depends_on 'mcs07/cheminformatics/gocr' => 'with-lib'
+  depends_on 'gocr' => 'with-lib'
   depends_on 'mcs07/cheminformatics/open-babel'
   depends_on 'graphicsmagick'
   depends_on 'ghostscript' => :optional
