@@ -2,7 +2,7 @@ require 'formula'
 
 class Indigo < Formula
   homepage 'http://ggasoftware.com/opensource/indigo'
-  url 'https://github.com/ggasoftware/indigo.git', :tag => 'indigo-1.1.11'
+  url 'https://github.com/ggasoftware/indigo.git', :tag => 'indigo-1.1.12'
   head 'https://github.com/ggasoftware/indigo.git', :branch => 'master'
 
   option 'with-java',   'Build with Java language bindings'
@@ -32,13 +32,14 @@ class Indigo < Formula
     include.install 'api/plugins/inchi/indigo-inchi.h'
     include.install 'api/plugins/renderer/indigo-renderer.h'
 
-    python do
-      python.site_packages.install 'api/python/indigo.py'
-      python.site_packages.install 'api/plugins/inchi/python/indigo_inchi.py'
-      python.site_packages.install 'api/plugins/renderer/python/indigo_renderer.py'
+    if build.with?('python')
+      pyvers = "python" + %x(python -c 'import sys;print(sys.version[:3])').chomp
+      (lib/"#{pyvers}/site-packages").install 'api/python/indigo.py'
+      (lib/"#{pyvers}/site-packages").install 'api/plugins/inchi/python/indigo_inchi.py'
+      (lib/"#{pyvers}/site-packages").install 'api/plugins/renderer/python/indigo_renderer.py'
     end
 
-    if build.with? 'java'
+    if build.with?('java')
       ver = /SET\(INDIGO_VERSION "(.+?)"/.match(File.read('api/indigo-version.cmake'))[1]
       cd 'api/java' do
         system "mvn", "versions:set", "-DnewVersion=#{ver}"
