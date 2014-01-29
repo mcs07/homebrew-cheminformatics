@@ -11,12 +11,12 @@ class Rdkit < Formula
   option 'with-postgresql', 'Build with PostgreSQL database cartridge'
 
   depends_on 'cmake' => :build
+  depends_on 'swig' => :build
   depends_on 'inchi' => :recommended
   depends_on :python => :recommended
   depends_on :postgresql => :optional
   depends_on 'numpy' => :python if build.with? 'python'
   depends_on 'boost'
-  depends_on 'swig' => :build
 
   def patches
     "https://gist.github.com/mcs07/7334872/raw" if not build.head?
@@ -31,8 +31,10 @@ class Rdkit < Formula
       args << "-DINCHI_LIBRARIES='#{HOMEBREW_PREFIX}/lib/libinchi.dylib'"
     end
     if build.with? 'python'
-      args << "-DPYTHON_INCLUDE_DIR='#{python.incdir}'"
-      args << "-DPYTHON_LIBRARY='#{python.libdir}/lib#{python.xy}.dylib'"
+      pyvers = "python" + %x(python -c 'import sys;print(sys.version[:3])').chomp
+      pypref = %x(python-config --prefix).chomp
+      args << "-DPYTHON_INCLUDE_DIR='#{pypref}/include/#{pyvers}'"
+      args << "-DPYTHON_LIBRARY='#{pypref}/lib/lib#{pyvers}.dylib'"
     else
       args << '-DRDK_BUILD_PYTHON_WRAPPERS='
     end
