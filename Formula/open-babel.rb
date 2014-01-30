@@ -6,49 +6,34 @@ class OpenBabel < Formula
   sha1 'b8831a308617d1c78a790479523e43524f07d50d'
   head 'https://github.com/openbabel/openbabel.git', :branch => 'master'
 
-  option 'with-cairo',  'Build with PNG depiction'
+  option 'without-cairo',  'Build without PNG depiction'
   option 'with-java',   'Build with Java language bindings'
   option 'with-python', 'Build with Python language bindings'
+  option 'with-wxmac',   'Build with GUI'
 
   depends_on 'pkg-config' => :build
   depends_on 'cmake' => :build
   depends_on :python => :optional
   depends_on 'wxmac' => :optional
-  depends_on 'cairo' => :optional
-  depends_on 'eigen' if build.with?('python') || build.with?('java')
+  depends_on 'cairo' => :recommended
+  depends_on 'swig' if build.with?('python') || build.with?('java')
+  depends_on 'eigen'
   depends_on 'inchi'
 
-  def patches
-    urls = []
-    if not build.head?
-      # Patch to fix Molecule.draw() in pybel in accordance with upstream commit df59c4a630cf753723d1318c40479d48b7507e1c
-      urls << "https://gist.github.com/fredrikw/5858168/raw"
-    end
-    return urls
-  end
-
   def install
-    # libc++ compatability fixed after v2.3.2
-    ENV.append 'CXXFLAGS', "-stdlib=libstdc++" if not build.head?
     args = std_cmake_parameters.split
     args << "-DOPENBABEL_USE_SYSTEM_INCHI=ON"
     args << "-DRUN_SWIG=ON" if build.with?('python') || build.with?('java')
     args << "-DJAVA_BINDINGS=ON" if build.with? 'java'
     args << "-DBUILD_GUI=ON" if build.with? 'wxmac'
 
-    # Automatic path detection for InChI and Cairo is fixed after v2.3.2
-    if not build.head?
-      args << "-DINCHI_INCLUDE_DIR='#{HOMEBREW_PREFIX}/include/inchi/'"
-      args << "-DINCHI_LIBRARY='#{HOMEBREW_PREFIX}/lib/libinchi.dylib'"
-      args << "-DCAIRO_INCLUDE_DIRS='#{HOMEBREW_PREFIX}/include/cairo'" if build.with? 'cairo'
-      args << "-DCAIRO_LIBRARIES='#{HOMEBREW_PREFIX}/lib/libcairo.dylib'" if build.with? 'cairo'
-    end
-
-    python do
+    if build.with?('python')
+      pyvers = "python" + %x(python -c 'import sys;print(sys.version[:3])').chomp
+      pypref = %x(python-config --prefix).chomp
       args << "-DPYTHON_BINDINGS=ON"
-      args << "-DPYTHON_INCLUDE_DIR='#{python.incdir}'"
-      args << "-DPYTHON_LIBRARY='#{python.libdir}/lib#{python.xy}.dylib'"
-      args << "-DPYTHON_PACKAGES_PATH='#{python.site_packages}'"
+      args << "-DPYTHON_INCLUDE_DIR='#{pypref}/include/#{pyvers}'"
+      args << "-DPYTHON_LIBRARY='#{pypref}/lib/lib#{pyvers}.dylib'"
+      args << "-DPYTHON_PACKAGES_PATH='#{lib}/#{pyvers}/site-packages'"
     end
 
     args << '..'
@@ -58,22 +43,26 @@ class OpenBabel < Formula
       system "make"
       system "make install"
     end
-
-    # Python install to site-packages fixed after v2.3.2
-    if build.with?('python') && !build.head?
-      python.site_packages.install lib/'openbabel.py', lib/'pybel.py', lib/'_openbabel.so'
-    end
   end
 
   def caveats
-    s = ''
-    s += python.standard_caveats if python
-    if build.with? 'java'
+    s = 'Always use the --HEAD option, given up on supporting v2.3.2 for now.'
+    if not build.with?('python')
       s += <<-EOS.undent
-        Java libraries are installed to #{HOMEBREW_PREFIX}/lib so this path should be
-        included in the CLASSPATH environment variable.
+
+        Instead of using the --with-python option, you may wish to install the
+        python language bindings independently using pip:
+          pip install openbabel
       EOS
     end
-  end
+    if build.with?('java')
+      s += <<-EOS.undent
 
+        Java libraries have been installed to:
+          #{HOMEBREW_PREFIX}/lib
+        You may wish to add this to the java CLASSPATH environment variable.
+      EOS
+    end
+    return s
+  end
 end
