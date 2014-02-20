@@ -3,7 +3,10 @@ require 'formula'
 class Indigo < Formula
   homepage 'http://ggasoftware.com/opensource/indigo'
   url 'https://github.com/ggasoftware/indigo.git', :tag => 'indigo-1.1.12'
-  head 'https://github.com/ggasoftware/indigo.git', :branch => 'master'
+
+  head do
+    url 'https://github.com/ggasoftware/indigo.git', :branch => 'master'
+  end
 
   option 'with-java',   'Build with Java language bindings'
   option 'with-python', 'Build with Python language bindings'
