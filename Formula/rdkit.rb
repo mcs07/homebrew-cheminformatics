@@ -6,6 +6,10 @@ class Rdkit < Formula
   sha1 '81b546a7b96bd3dd25ddb85a45e77223cf800e40'
   head 'https://github.com/rdkit/rdkit.git'
 
+  head do
+    url 'https://github.com/rdkit/rdkit.git'
+  end
+
   option 'without-python', 'Build without Python language bindings'
   option 'without-inchi', 'Build without InChI support'
   option 'with-postgresql', 'Build with PostgreSQL database cartridge'
@@ -19,7 +23,9 @@ class Rdkit < Formula
   depends_on 'boost'
 
   def patches
-    "https://gist.github.com/mcs07/7334872/raw" if not build.head?
+    unless build.head?
+      "https://gist.github.com/mcs07/7334872/raw/829b6a7cd602c3bd88c222cbd8ee6c3c8f0de170/rdkit-mavericks.diff"
+    end
   end
 
   def install
