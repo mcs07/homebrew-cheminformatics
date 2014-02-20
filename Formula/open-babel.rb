@@ -4,7 +4,10 @@ class OpenBabel < Formula
   homepage 'http://www.openbabel.org'
   url 'http://downloads.sourceforge.net/project/openbabel/openbabel/2.3.2/openbabel-2.3.2.tar.gz'
   sha1 'b8831a308617d1c78a790479523e43524f07d50d'
-  head 'https://github.com/openbabel/openbabel.git', :branch => 'master'
+
+  head do
+    url 'https://github.com/openbabel/openbabel.git', :branch => 'master'
+  end
 
   option 'without-cairo',  'Build without PNG depiction'
   option 'with-java',   'Build with Java language bindings'
