@@ -4,9 +4,11 @@ class Opsin < Formula
   homepage 'https://bitbucket.org/dan2097/opsin'
   url 'https://bitbucket.org/dan2097/opsin/downloads/opsin-1.5.0-jar-with-dependencies.jar'
   sha1 '4b6d779498ee629b3a01b22a68bf1a29b437658a'
-  head 'https://bitbucket.org/dan2097/opsin', :using => :hg
 
-  depends_on 'maven' if build.head?
+  head do
+    url 'https://bitbucket.org/dan2097/opsin', :using => :hg
+    depends_on 'maven'
+  end
 
   def install
     if build.head?
