@@ -6,7 +6,7 @@ Cheminformatics formulae for the Homebrew package manager.
 
 Homebrew must be installed:
 
-    ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+    ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
     brew update
     brew doctor
     
@@ -16,13 +16,15 @@ Add the cheminformatics tap:
     
 Install what you want:
 
+    brew install cdk
+    brew install chemspot
+    brew install indigo
     brew install inchi
     brew install opsin
-    brew install indigo
-    brew install rdkit
     brew install osra
+    brew install rdkit
     
-There is already an open-babel formula in the main homebrew repository, so use the full path:
+There is already an (outdated) open-babel formula in the main homebrew repository, so use the full path:
     
     brew install mcs07/cheminformatics/open-babel
     
