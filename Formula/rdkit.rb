@@ -2,8 +2,8 @@ require 'formula'
 
 class Rdkit < Formula
   homepage 'http://rdkit.org/'
-  url 'http://sourceforge.net/projects/rdkit/files/rdkit/Q3_2013/RDKit_2013_09_1.tgz/download'
-  sha1 '81b546a7b96bd3dd25ddb85a45e77223cf800e40'
+  url 'http://sourceforge.net/projects/rdkit/files/rdkit/Q3_2013/RDKit_2013_09_2.tgz/download'
+  sha1 'b592d3d6ed6bd5af1e7a607851ebd5de016ecff5'
   head 'https://github.com/rdkit/rdkit.git'
 
   head do
@@ -21,12 +21,6 @@ class Rdkit < Formula
   depends_on :postgresql => :optional
   depends_on 'numpy' => :python if build.with? 'python'
   depends_on 'boost'
-
-  def patches
-    unless build.head?
-      "https://gist.github.com/mcs07/7334872/raw/829b6a7cd602c3bd88c222cbd8ee6c3c8f0de170/rdkit-mavericks.diff"
-    end
-  end
 
   def install
     args = std_cmake_parameters.split
