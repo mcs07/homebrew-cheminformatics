@@ -2,9 +2,8 @@ require 'formula'
 
 class Rdkit < Formula
   homepage 'http://rdkit.org/'
-  url 'http://sourceforge.net/projects/rdkit/files/rdkit/Q3_2013/RDKit_2013_09_2.tgz/download'
-  sha1 'b592d3d6ed6bd5af1e7a607851ebd5de016ecff5'
-  head 'https://github.com/rdkit/rdkit.git'
+  url 'https://github.com/rdkit/rdkit/archive/Release_2013_09_2.tar.gz'
+  sha1 '2c55843403ceba98db0069c6807b4a93fa225262'
 
   head do
     url 'https://github.com/rdkit/rdkit.git'
@@ -44,7 +43,7 @@ class Rdkit < Formula
     system "make"
     system "make install"
     rm_f Dir["#{lib}/*.cmake"]
-    if build.include? 'with-postgresql'
+    if build.with? 'postgresql'
       ENV['RDBASE'] = "#{prefix}"
       ENV.append 'CFLAGS', "-I#{include}/rdkit"
       cd 'Code/PgSQL/rdkit' do
