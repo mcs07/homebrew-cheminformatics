@@ -24,6 +24,7 @@ class Rdkit < Formula
   def install
     args = std_cmake_parameters.split
     args << '-DRDK_INSTALL_INTREE=OFF'
+    args << '-DRDK_USE_FLEXBISON=OFF' if build.head?
     if build.with? 'inchi'
       args << '-DRDK_BUILD_INCHI_SUPPORT=ON'
       args << "-DINCHI_INCLUDE_DIR=#{HOMEBREW_PREFIX}/include/inchi/"
