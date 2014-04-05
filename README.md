@@ -18,11 +18,14 @@ Install what you want:
 
     brew install cdk
     brew install chemspot
+    brew install filter-it
     brew install indigo
     brew install inchi
     brew install opsin
     brew install osra
     brew install rdkit
+
+Look in the [Formula directory](https://github.com/mcs07/homebrew-cheminformatics/tree/master/Formula) for a full list of what is available.
     
 There is already an (outdated) open-babel formula in the main homebrew repository, so use the full path:
     
