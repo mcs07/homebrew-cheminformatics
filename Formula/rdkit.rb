@@ -5,9 +5,12 @@ class Rdkit < Formula
   url 'https://github.com/rdkit/rdkit/archive/Release_2013_09_2.tar.gz'
   sha1 '2c55843403ceba98db0069c6807b4a93fa225262'
 
+  devel do
+    url 'https://github.com/rdkit/rdkit/archive/Release_2014_03_1beta1.tar.gz'
+  end
+
   head do
     url 'https://github.com/rdkit/rdkit.git'
-    depends_on 'bison' => :optional
   end
 
   option 'without-python', 'Build without Python language bindings'
