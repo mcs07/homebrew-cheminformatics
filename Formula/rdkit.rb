@@ -7,6 +7,7 @@ class Rdkit < Formula
 
   devel do
     url 'https://github.com/rdkit/rdkit/archive/Release_2014_03_1beta1.tar.gz'
+    version '2014.03.1b1'
   end
 
   head do
