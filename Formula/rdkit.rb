@@ -14,18 +14,17 @@ class Rdkit < Formula
     url 'https://github.com/rdkit/rdkit.git'
   end
 
-  option 'without-python', 'Build without Python language bindings'
   option 'without-inchi', 'Build without InChI support'
   option 'with-postgresql', 'Build with PostgreSQL database cartridge'
   option 'with-avalon', 'Build with Avalon support'
 
   depends_on 'cmake' => :build
   depends_on 'swig' => :build
+  depends_on :python
+  depends_on 'boost' => 'with-python'
+  depends_on 'numpy' => :python
   depends_on 'inchi' => :recommended
-  depends_on :python => :recommended
   depends_on :postgresql => :optional
-  depends_on 'numpy' => :python if build.with? 'python'
-  depends_on 'boost'
 
   def install
     args = std_cmake_parameters.split
@@ -36,14 +35,10 @@ class Rdkit < Formula
       args << "-DINCHI_INCLUDE_DIR=#{HOMEBREW_PREFIX}/include/inchi/"
       args << "-DINCHI_LIBRARIES='#{HOMEBREW_PREFIX}/lib/libinchi.dylib'"
     end
-    if build.with? 'python'
-      pyvers = "python" + %x(python -c 'import sys;print(sys.version[:3])').chomp
-      pypref = %x(python-config --prefix).chomp
-      args << "-DPYTHON_INCLUDE_DIR='#{pypref}/include/#{pyvers}'"
-      args << "-DPYTHON_LIBRARY='#{pypref}/lib/lib#{pyvers}.dylib'"
-    else
-      args << '-DRDK_BUILD_PYTHON_WRAPPERS='
-    end
+    pyvers = "python" + %x(python -c 'import sys;print(sys.version[:3])').chomp
+    pypref = %x(python-config --prefix).chomp
+    args << "-DPYTHON_INCLUDE_DIR='#{pypref}/include/#{pyvers}'"
+    args << "-DPYTHON_LIBRARY='#{pypref}/lib/lib#{pyvers}.dylib'"
     if build.with? 'avalon'
       system "curl -L https://downloads.sourceforge.net/project/avalontoolkit/AvalonToolkit_1.1_beta/AvalonToolkit_1.1_beta.source.tar -o External/AvalonTools/avalon.tar"
       system "tar xf External/AvalonTools/avalon.tar -C External/AvalonTools"
