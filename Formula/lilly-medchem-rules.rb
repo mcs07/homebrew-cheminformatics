@@ -2,6 +2,7 @@ require 'formula'
 
 class LillyMedchemRules < Formula
   homepage 'https://github.com/IanAWatson/Lilly-Medchem-Rules'
+  keg_only 'Scripts are only designed to be run from the source directory.'
 
   head do
     url 'https://github.com/IanAWatson/Lilly-Medchem-Rules.git'
