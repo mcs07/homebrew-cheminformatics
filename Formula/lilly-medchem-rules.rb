@@ -15,7 +15,6 @@ class LillyMedchemRules < Formula
 
   def install
     system "make"
-    bin.install Dir['bin/*']
     prefix.install Dir['*']
   end
 
