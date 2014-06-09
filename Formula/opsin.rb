@@ -2,8 +2,8 @@ require 'formula'
 
 class Opsin < Formula
   homepage 'https://bitbucket.org/dan2097/opsin'
-  url 'https://bitbucket.org/dan2097/opsin/downloads/opsin-1.5.0-jar-with-dependencies.jar'
-  sha1 '4b6d779498ee629b3a01b22a68bf1a29b437658a'
+  url 'https://bitbucket.org/dan2097/opsin/downloads/opsin-1.6.0-jar-with-dependencies.jar'
+  sha1 'bfa3f321b48b349030ce58cdaa6742273b8ca5a7'
 
   head do
     url 'https://bitbucket.org/dan2097/opsin', :using => :hg
@@ -13,10 +13,10 @@ class Opsin < Formula
   def install
     if build.head?
       system 'mvn', 'package', 'assembly:assembly', '-DskipTests'
-      mv Dir['target/*.jar'].to_s, 'target/opsin.jar'
+      mv Dir['target/*.jar'].first, 'target/opsin.jar'
       libexec.install 'target/opsin.jar'
     else
-      mv 'opsin-1.5.0-jar-with-dependencies.jar', 'opsin.jar'
+      mv Dir['*.jar'].first, 'opsin.jar'
       libexec.install 'opsin.jar'
     end
     bin.write_jar_script libexec/'opsin.jar', 'opsin'
