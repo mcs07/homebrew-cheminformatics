@@ -14,11 +14,13 @@ class Rdkit < Formula
     url "https://github.com/rdkit/rdkit.git"
   end
 
+  option 'with-java', 'Build with Java language bindings'
   option "without-inchi", "Build without InChI support"
   option "with-postgresql", "Build with PostgreSQL database cartridge"
   option "with-avalon", "Build with Avalon support"
 
   depends_on "cmake" => :build
+  depends_on "swig" => :build if build.with? "java"
   depends_on :python
   depends_on "boost" => "with-python"
   depends_on "numpy" => :python
@@ -28,6 +30,13 @@ class Rdkit < Formula
   def install
     args = std_cmake_parameters.split
     args << "-DRDK_INSTALL_INTREE=OFF"
+    if build.with? "java"
+      if not File.exists? "External/java_lib/junit.jar"
+        system "mkdir", "External/java_lib"
+        system "curl http://search.maven.org/remotecontent?filepath=junit/junit/4.11/junit-4.11.jar -o External/java_lib/junit.jar"
+      end
+      args << "-DRDK_BUILD_SWIG_WRAPPERS=ON"
+    end
     if build.with? "inchi"
       args << "-DRDK_BUILD_INCHI_SUPPORT=ON"
       args << "-DINCHI_INCLUDE_DIR='#{HOMEBREW_PREFIX}/include/inchi/'"
