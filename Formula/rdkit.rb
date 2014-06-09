@@ -54,7 +54,6 @@ class Rdkit < Formula
     end
     args << "."
     system "cmake", *args
-    ENV.j1
     system "make"
     system "make install"
     rm_f Dir["#{lib}/*.cmake"]
