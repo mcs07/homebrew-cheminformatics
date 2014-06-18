@@ -50,7 +50,7 @@ class Rdkit < Formula
       system "curl -L https://downloads.sourceforge.net/project/avalontoolkit/AvalonToolkit_1.1_beta/AvalonToolkit_1.1_beta.source.tar -o External/AvalonTools/avalon.tar"
       system "tar xf External/AvalonTools/avalon.tar -C External/AvalonTools"
       args << "-DRDK_BUILD_AVALON_SUPPORT=ON"
-      args << "-DAVALONTOOLS_DIR=#{buildpath}/External/AvalonTools/SourceDistribution"
+      args << "-DAVALONTOOLS_DIR='#{buildpath}/External/AvalonTools/SourceDistribution'"
     end
     args << "."
     system "cmake", *args
