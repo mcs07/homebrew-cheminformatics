@@ -2,8 +2,9 @@ require 'formula'
 
 class OpenBabel < Formula
   homepage 'http://www.openbabel.org'
-  url 'http://downloads.sourceforge.net/project/openbabel/openbabel/2.3.2/openbabel-2.3.2.tar.gz'
-  sha1 'b8831a308617d1c78a790479523e43524f07d50d'
+  # head-only for now...
+  #url 'http://downloads.sourceforge.net/project/openbabel/openbabel/2.3.2/openbabel-2.3.2.tar.gz'
+  #sha1 'b8831a308617d1c78a790479523e43524f07d50d'
 
   head do
     url 'https://github.com/openbabel/openbabel.git', :branch => 'master'
@@ -61,7 +62,7 @@ class OpenBabel < Formula
     if build.with?('java')
       s += <<-EOS.undent
 
-        Java libraries have been installed to:
+        Java libraries are installed to:
           #{HOMEBREW_PREFIX}/lib
         You may wish to add this to the java CLASSPATH environment variable.
       EOS
