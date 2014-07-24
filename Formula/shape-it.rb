@@ -2,7 +2,9 @@ require 'formula'
 
 class ShapeIt < Formula
   homepage 'http://www.silicos-it.com/software/shape-it/1.0.1/shape-it.html'
-  url 'http://www.silicos-it.com/_php/download.php?file=shape-it-1.0.1.tar.gz'
+  #url 'http://www.silicos-it.com/_php/download.php?file=shape-it-1.0.1.tar.gz'
+  # Temporary URL because silicos-it.com has disappeared
+  url 'http://assets.matt-swain.com/homebrew/shape-it-1.0.1.tar.gz'
   sha1 '584dac228c10d1bd07b4ffd2cbac0efb5024025e'
 
   depends_on 'cmake' => :build
