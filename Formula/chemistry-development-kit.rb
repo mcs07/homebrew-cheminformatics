@@ -2,7 +2,7 @@ require 'formula'
 
 class ChemistryDevelopmentKit < Formula
   homepage 'http://cdk.sf.net/'
-  url 'http://downloads.sourceforge.net/project/cdk/cdk/1.4.19/cdk-1.4.19.jar'
+  url 'https://downloads.sourceforge.net/project/cdk/cdk/1.4.19/cdk-1.4.19.jar'
   sha1 '4f31a6a0a5eba376736eb45b3e5cad4a895aa786'
 
   head do
