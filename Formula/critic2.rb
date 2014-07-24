@@ -3,7 +3,7 @@ require "formula"
 class Critic2 < Formula
   homepage "http://gatsby.ucmerced.edu/wiki/Critic2"
   url "http://gatsby.ucmerced.edu/downloads/critic2/critic2-1.0.tar.gz"
-  sha1 "a1b5606938e9e9a55471d3c334e1e9b64151d7a9"
+  sha1 "2b824a23def56e814d0893b89b26881f1373fb32"
 
   option "with-libxc", "Build with libxc support to calculate exchange and correlation energy densities"
 
