@@ -25,7 +25,7 @@ env:
   - PACKAGE=rdkit
   - PACKAGE=shape-it
   - PACKAGE=smartcyp
-  - PACKAGE=spectral-hk
+  - PACKAGE=spectral-hk OPTIONS=--HEAD
   - PACKAGE=strip-it
 script:
   - brew audit $PACKAGE
