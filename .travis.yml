@@ -19,7 +19,7 @@ env:
   - PACKAGE=indigo
   - PACKAGE=jcompoundmapper
   - PACKAGE=lilly-medchem-rules
-  - PACKAGE=open-babel
+  - PACKAGE=mcs07/cheminformatics/open-babel OPTIONS=--HEAD
   - PACKAGE=opsin
   - PACKAGE=osra
   - PACKAGE=rdkit
@@ -29,5 +29,5 @@ env:
   - PACKAGE=strip-it
 script:
   - brew audit $PACKAGE
-  - brew install -v $PACKAGE
+  - brew install -v $PACKAGE $OPTIONS
   - brew test $PACKAGE
