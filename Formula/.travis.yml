@@ -1,0 +1,33 @@
+language: objective-c
+before_install:
+  - brew update
+install:
+  - mkdir -p $(brew --repo)/Library/Taps/travis
+  - ln -s $PWD $(brew --repo)/Library/Taps/travis/homebrew-testtap
+  - brew tap --repair
+env:
+  - PACKAGE=align-it
+  - PACKAGE=avalon
+  - PACKAGE=chargemol
+  - PACKAGE=chemistry-development-kit
+  - PACKAGE=chemspot
+  - PACKAGE=critic2
+  - PACKAGE=filter-it
+  - PACKAGE=gocr
+  - PACKAGE=helium
+  - PACKAGE=inchi
+  - PACKAGE=indigo
+  - PACKAGE=jcompoundmapper
+  - PACKAGE=lilly-medchem-rules
+  - PACKAGE=open-babel
+  - PACKAGE=opsin
+  - PACKAGE=osra
+  - PACKAGE=rdkit
+  - PACKAGE=shape-it
+  - PACKAGE=smartcyp
+  - PACKAGE=spectral-hk
+  - PACKAGE=strip-it
+script:
+  - brew audit $PACKAGE
+  - brew install -v $PACKAGE
+  - brew test $PACKAGE
