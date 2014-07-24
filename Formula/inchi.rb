@@ -7,9 +7,10 @@ class Inchi < Formula
   version '1.04'
   sha1 '46a99a532ae6fcec40efe20abafed0ed52d73c43'
 
-  def patches
-    # Patch makefile to support Mac OS X
-    'https://gist.github.com/mcs07/6194763/raw/2edc62ed259fa8970a9c9bbd9b937afc2cf45f98/inchi-osx.diff'
+  # Patch makefile to support Mac OS X
+  patch do
+    url "https://gist.github.com/mcs07/6194763/raw/2edc62ed259fa8970a9c9bbd9b937afc2cf45f98/inchi-osx.diff"
+    sha1 "33c09c38e5e45d88fa9a04b4289eb05a6c3b678b"
   end
 
   def install
