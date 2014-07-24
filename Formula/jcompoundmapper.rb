@@ -52,6 +52,6 @@ class Jcompoundmapper < Formula
       M  END
     EOS
     File.open("input.mol", "w") {|f| f.write(mol)}
-    system 'jcmapper -f input.mol'
+    system "#{bin}/jcmapper -f input.mol"
   end
 end
