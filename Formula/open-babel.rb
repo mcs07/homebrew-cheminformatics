@@ -69,4 +69,11 @@ class OpenBabel < Formula
     end
     return s
   end
+
+  test do
+    system "#{bin}/obabel --help"
+    system "#{bin}/obabel -:'C1=CC=CC=C1Br' -ocan"
+    system "#{bin}/obabel -:'C1=CC=CC=C1Br' -omol"
+    system "#{bin}/obabel -:'C1=CC=CC=C1Br' -oinchi"
+  end
 end
