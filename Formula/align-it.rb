@@ -2,7 +2,9 @@ require 'formula'
 
 class AlignIt < Formula
   homepage 'http://www.silicos-it.com/software/align-it/1.0.4/align-it.html'
-  url 'http://www.silicos-it.com/_php/download.php?file=align-it-1.0.4.tar.gz'
+  #url 'http://www.silicos-it.com/_php/download.php?file=align-it-1.0.4.tar.gz'
+  # Temporary URL because silicos-it.com has disappeared
+  url 'http://assets.matt-swain.com/homebrew/align-it-1.0.4.tar.gz'
   sha1 '3486b5bbdb970cd73ed332a89ba1807afe393e92'
 
   depends_on 'cmake' => :build
