@@ -18,7 +18,7 @@ env:
   - PACKAGE=inchi
   - PACKAGE=indigo
   - PACKAGE=jcompoundmapper
-  - PACKAGE=lilly-medchem-rules
+  - PACKAGE=lilly-medchem-rules OPTIONS=--HEAD
   - PACKAGE=mcs07/cheminformatics/open-babel OPTIONS=--HEAD
   - PACKAGE=opsin
   - PACKAGE=osra
