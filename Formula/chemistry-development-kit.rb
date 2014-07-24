@@ -30,4 +30,7 @@ class ChemistryDevelopmentKit < Formula
     EOS
   end
 
+  test do
+    system "test -f #{libexec}/cdk.jar"
+  end
 end
