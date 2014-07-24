@@ -15,6 +15,7 @@ class Critic2 < Formula
     args = "--disable-debug", "--disable-dependency-tracking", "--disable-silent-rules", "--prefix=#{prefix}"
     args << "--with-libxc=#{HOMEBREW_PREFIX}" if build.with? 'libxc'
     system "./configure", *args
+    ENV.deparallelize
     system "make", "install"
   end
 
