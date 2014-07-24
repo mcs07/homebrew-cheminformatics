@@ -3,7 +3,7 @@ require 'formula'
 class Inchi < Formula
   homepage 'http://www.inchi-trust.org/downloads/'
   url 'http://www.inchi-trust.org/fileadmin/user_upload/software/inchi-v1.04/INCHI-1-API.ZIP'
-  mirror 'http://assets.matt-swain.com/inchi/INCHI-1-API.ZIP'
+  mirror 'http://assets.matt-swain.com/homebrew/INCHI-1-API.ZIP'
   version '1.04'
   sha1 '46a99a532ae6fcec40efe20abafed0ed52d73c43'
 
