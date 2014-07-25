@@ -3,7 +3,7 @@ require "formula"
 class CustomZipDownloadStrategy < CurlDownloadStrategy
   def stage
     begin
-      with_system_path { quiet_safe_system 'unzip', {:quiet_flag => '-qq'}, tarball_path }
+      with_system_path { quiet_safe_system "unzip", {:quiet_flag => "-qq"}, tarball_path }
     rescue ErrorDuringExecution
       ohai "Ignoring unzip errors"
     ensure
@@ -23,7 +23,7 @@ class Chargemol < Formula
     cd "chargemol_06_09_2014/chargemol_FORTRAN_06_09_2014/sourcecode" do
       # This should match the contents of compile_serial.txt
       # parallel compile does not work for some reason
-      system ENV['FC'], "-ochargemol", "-static-libgfortran", "precise.f08", "global_parameters.f08",
+      system ENV["FC"], "-ochargemol", "-static-libgfortran", "precise.f08", "global_parameters.f08",
         "common_variable_declarations.f08", "module_quote.f08", "String_Utility.f08", "matrix_operations.f08",
         "module_read_job_control.f08", "module_read_wfx.f08", "gaussian_functions.f08",
         "charge_center_positions_and_parallelpiped.f08", "module_generate_kApoints_kBpoints_kCpoints.f08",
@@ -48,9 +48,9 @@ class Chargemol < Formula
         "module_initialize_bond_pair_matrix.f08", "module_compute_local_atomic_exchange_vectors.f08",
         "module_prepare_EBO_density_grids.f08", "module_statistical_EBO_coefficients.f08",
         "module_perform_EBO_analysis.f08", "chargemol.f08"
-      bin.install 'chargemol'
+      bin.install "chargemol"
     end
-    (share/'chargemol').install 'chargemol_06_09_2014/atomic_densities'
+    (share/"chargemol").install "chargemol_06_09_2014/atomic_densities"
   end
 
   def caveats; <<-EOS.undent
@@ -60,6 +60,7 @@ class Chargemol < Formula
   end
 
   test do
-    system "false"
+    File.open("job_control.txt", "w") {|f| f.write("") }
+    system "#{bin}/chargemol"
   end
 end
