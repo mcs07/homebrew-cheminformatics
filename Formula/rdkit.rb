@@ -59,7 +59,7 @@ class Rdkit < Formula
     end
 
     # Get Python location
-    pyexec = if build.with? "python3" then "#{HOMEBREW_PREFIX}/bin/python3" else "#{HOMEBREW_PREFIX}/bin/python" end
+    pyexec = if build.with? "python3" then `which python3`.strip else `which python`.strip end
     pypref = %x(#{pyexec} -c 'import sysconfig;print(sysconfig.get_config_var("prefix"))').chomp
     pyinc = %x(#{pyexec} -c 'import sysconfig;print(sysconfig.get_path("include"))').chomp
     pyvers = "python" + %x(#{pyexec} -c 'import sys;print(sys.version[:3])').chomp
