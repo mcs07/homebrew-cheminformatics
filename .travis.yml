@@ -9,6 +9,7 @@ env:
   - PACKAGE=align-it
   - PACKAGE=avalon
   - PACKAGE=chargemol
+  - PACKAGE=checkmol
   - PACKAGE=chemistry-development-kit
   - PACKAGE=chemspot
   - PACKAGE=critic2
