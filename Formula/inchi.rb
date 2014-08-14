@@ -7,6 +7,12 @@ class Inchi < Formula
   version '1.04'
   sha1 '46a99a532ae6fcec40efe20abafed0ed52d73c43'
 
+  bottle do
+    root_url "http://assets.matt-swain.com/homebrew"
+    cellar :any
+    sha1 "a27211c7db8b67fb2784562cca515b9da4f4bed7" => :mavericks
+  end
+
   # Patch makefile to support Mac OS X
   patch do
     url "https://gist.github.com/mcs07/6194763/raw/2edc62ed259fa8970a9c9bbd9b937afc2cf45f98/inchi-osx.diff"
