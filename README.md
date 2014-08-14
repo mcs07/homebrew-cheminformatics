@@ -1,6 +1,4 @@
-# homebrew-cheminformatics [![Build Status](http://img.shields.io/travis/mcs07/homebrew-cheminformatics/master.svg)](https://travis-ci.org/mcs07/homebrew-cheminformatics)
-
-
+# homebrew-cheminformatics [![Build Status](http://img.shields.io/travis/mcs07/homebrew-cheminformatics/master.svg?style=flat)](https://travis-ci.org/mcs07/homebrew-cheminformatics)
 
 Cheminformatics formulae for the Homebrew package manager.
 
