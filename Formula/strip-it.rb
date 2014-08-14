@@ -7,6 +7,12 @@ class StripIt < Formula
   url 'http://assets.matt-swain.com/homebrew/strip-it-1.0.2.tar.gz'
   sha1 '5bd77184602475ce336d804077be0f7bb28bd6b0'
 
+  bottle do
+    root_url "http://assets.matt-swain.com/homebrew"
+    cellar :any
+    sha1 "3537f91d1d38d674e91849d85d2c958de70bbc6b" => :mavericks
+  end
+
   depends_on 'cmake' => :build
   depends_on 'mcs07/cheminformatics/open-babel'
 
