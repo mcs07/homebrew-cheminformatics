@@ -2,9 +2,9 @@ require 'formula'
 
 class Chemspot < Formula
   homepage 'https://www.informatik.hu-berlin.de/forschung/gebiete/wbi/resources/chemspot/chemspot/'
-  url 'http://www.informatik.hu-berlin.de/forschung/gebiete/wbi/resources/chemspot/download'
-  version '1.5'
-  sha1 '44e8e7f512e51d157667c990aa20ce610bcd95d1'
+  url 'https://www.informatik.hu-berlin.de/forschung/gebiete/wbi/resources/chemspot/chemspot-2.0.zip'
+  version '2.0'
+  sha1 '7b3753bc94d9a9f77b877f27834e470b2bde841c'
 
   def install
     libexec.install 'chemspot.jar'
@@ -12,7 +12,7 @@ class Chemspot < Formula
     (share/'chemspot').install 'ids.zip'
     (bin+'chemspot').write <<-EOS.undent
       #!/bin/sh
-      java -jar -Xmx9G "#{libexec}/chemspot.jar" -d "#{share}/chemspot/dict.zip"  -i "#{share}/chemspot/ids.zip"  "$@"
+      java -jar -Xmx16G "#{libexec}/chemspot.jar" -d "#{share}/chemspot/dict.zip"  -i "#{share}/chemspot/ids.zip"  "$@"
     EOS
   end
 
