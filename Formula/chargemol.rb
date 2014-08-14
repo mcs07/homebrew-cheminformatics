@@ -17,6 +17,11 @@ class Chargemol < Formula
   url "https://downloads.sourceforge.net/project/ddec/chargemol_06_09_2014.zip", :using => CustomZipDownloadStrategy
   sha1 "4f58bf5a74b77ad6ea80bb483cac2f9a0a7b3cb5"
 
+  bottle do
+    root_url "http://assets.matt-swain.com/homebrew"
+    sha1 "a3e1c521816d3ff380f76b1ec14cfac51dc84891" => :mavericks
+  end
+
   depends_on :fortran
 
   def install
