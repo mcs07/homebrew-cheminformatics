@@ -7,6 +7,12 @@ class FilterIt < Formula
   url 'http://assets.matt-swain.com/homebrew/filter-it-1.0.2.tar.gz'
   sha1 '25dbb320c5e7f17cb6755fe49791b16a36ac604c'
 
+  bottle do
+    root_url "http://assets.matt-swain.com/homebrew"
+    cellar :any
+    sha1 "93e3b8f52669021e979e00369dfeae8618d00986" => :mavericks
+  end
+
   depends_on 'cmake' => :build
   depends_on 'mcs07/cheminformatics/open-babel'
 
