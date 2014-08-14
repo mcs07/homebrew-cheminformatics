@@ -20,7 +20,6 @@ env:
   - PACKAGE=jcompoundmapper
   - PACKAGE=opsin
   - PACKAGE=osra
-  - PACKAGE=rdkit
   - PACKAGE=shape-it
   - PACKAGE=smartcyp
   - PACKAGE=strip-it
