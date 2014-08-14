@@ -12,6 +12,7 @@ env:
   - PACKAGE=checkmol
   - PACKAGE=chemistry-development-kit
   - PACKAGE=chemspot
+  - PACKAGE=cluster
   - PACKAGE=critic2
   - PACKAGE=filter-it
   - PACKAGE=gocr
