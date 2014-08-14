@@ -28,6 +28,7 @@ env:
   - PACKAGE=smartcyp
   - PACKAGE=spectral-hk OPTIONS=--HEAD
   - PACKAGE=strip-it
+  - PACKAGE=subset
 script:
   - brew audit $PACKAGE
   - brew install -v $PACKAGE $OPTIONS
