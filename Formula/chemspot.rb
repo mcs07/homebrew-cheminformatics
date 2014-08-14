@@ -3,7 +3,6 @@ require 'formula'
 class Chemspot < Formula
   homepage 'https://www.informatik.hu-berlin.de/forschung/gebiete/wbi/resources/chemspot/chemspot/'
   url 'https://www.informatik.hu-berlin.de/forschung/gebiete/wbi/resources/chemspot/chemspot-2.0.zip'
-  version '2.0'
   sha1 '7b3753bc94d9a9f77b877f27834e470b2bde841c'
 
   def install
