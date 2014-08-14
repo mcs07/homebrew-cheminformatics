@@ -7,6 +7,12 @@ class ShapeIt < Formula
   url 'http://assets.matt-swain.com/homebrew/shape-it-1.0.1.tar.gz'
   sha1 '584dac228c10d1bd07b4ffd2cbac0efb5024025e'
 
+  bottle do
+    root_url "http://assets.matt-swain.com/homebrew"
+    cellar :any
+    sha1 "eea2a2101b78fddd475ac4f3b1b9fee857fff407" => :mavericks
+  end
+
   depends_on 'cmake' => :build
   depends_on 'mcs07/cheminformatics/open-babel'
 
