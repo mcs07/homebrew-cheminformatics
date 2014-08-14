@@ -5,6 +5,12 @@ class Helium < Formula
   url "http://moldb.net/helium-0.2.0.tar.gz"
   sha1 "6c6711095d522ed5a0912daa1c54ae0de803c79a"
 
+  bottle do
+    root_url "http://assets.matt-swain.com/homebrew"
+    cellar :any
+    sha1 "a24c8cc1e88d197ea40a52d06c2e99b0ba765ece" => :mavericks
+  end
+
   option "with-python", "Build with Python language bindings"
   option "with-open-babel", "Build obhelium tool"
 
