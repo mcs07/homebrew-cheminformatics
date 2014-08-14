@@ -6,6 +6,12 @@ class Avalon < Formula
   version '1.1b'
   sha1 'a0b15075c015884bc0c0a92c53b47368f45274fe'
 
+  bottle do
+    root_url "http://assets.matt-swain.com/homebrew"
+    cellar :any
+    sha1 "bd4d459e6a70d3bfb0d07925f477a64715091dc9" => :mavericks
+  end
+
   def install
     cd 'SourceDistribution' do
       inreplace 'makefile', 'platform.makefile', 'linux64.makefile'
