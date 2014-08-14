@@ -7,6 +7,12 @@ class AlignIt < Formula
   url 'http://assets.matt-swain.com/homebrew/align-it-1.0.4.tar.gz'
   sha1 '3486b5bbdb970cd73ed332a89ba1807afe393e92'
 
+  bottle do
+    root_url "http://assets.matt-swain.com/homebrew"
+    cellar :any
+    sha1 "df26944b222df242c2cca8aaf6e32825c2667c32" => :mavericks
+  end
+
   depends_on 'cmake' => :build
   depends_on 'mcs07/cheminformatics/open-babel'
 
