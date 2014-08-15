@@ -14,7 +14,6 @@ env:
   - PACKAGE=cluster
   - PACKAGE=critic2
   - PACKAGE=filter-it
-  - PACKAGE=gocr
   - PACKAGE=helium
   - PACKAGE=inchi
   - PACKAGE=jcompoundmapper
