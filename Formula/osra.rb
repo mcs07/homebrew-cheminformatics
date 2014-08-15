@@ -5,6 +5,11 @@ class Osra < Formula
   url 'https://downloads.sourceforge.net/project/osra/osra/2.0.0/osra-2.0.0.tgz'
   sha1 '318862b556014066d68342a843a470993877e8a9'
 
+  bottle do
+    root_url "http://assets.matt-swain.com/homebrew"
+    sha1 "7a441e74343c5f986a1b619692f028174d360075" => :mavericks
+  end
+
   depends_on 'freetype'
   depends_on 'libpng'
   depends_on 'libtiff'
