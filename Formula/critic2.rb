@@ -7,7 +7,8 @@ class Critic2 < Formula
 
   bottle do
     root_url "http://assets.matt-swain.com/homebrew"
-    sha1 "df36477c66f1872fedd786a3e3ad046fd7ea1edf" => :mavericks
+    revision 1
+    sha1 "0af1bfae11e549f90e150c8f4949708accde0f7b" => :mavericks
   end
 
   option "with-libxc", "Build with libxc support to calculate exchange and correlation energy densities"
