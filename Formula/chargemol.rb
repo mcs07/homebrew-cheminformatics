@@ -19,7 +19,8 @@ class Chargemol < Formula
 
   bottle do
     root_url "http://assets.matt-swain.com/homebrew"
-    sha1 "a3e1c521816d3ff380f76b1ec14cfac51dc84891" => :mavericks
+    revision 1
+    sha1 "d35d8b13a84c65beca9c21079c3c7096b571fe1a" => :mavericks
   end
 
   depends_on :fortran
