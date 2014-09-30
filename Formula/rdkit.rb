@@ -23,17 +23,18 @@ class Rdkit < Formula
 
   depends_on "cmake" => :build
   depends_on "swig" => :build if build.with? "java"
+  depends_on "boost"
   depends_on :python3 => :optional
   depends_on "inchi" => :recommended
   depends_on :postgresql => :optional
 
   # Different dependencies if building for python3
   if build.with? "python3"
-    depends_on "boost" => "with-python3"
+    depends_on "boost-python" => "with-python3"
     depends_on "py3cairo" if build.with? "pycairo"
   else
     depends_on :python
-    depends_on "boost" => "with-python"
+    depends_on "boost-python"
     depends_on "numpy" => :python
     depends_on "py2cairo" if build.with? "pycairo"
   end
@@ -60,8 +61,8 @@ class Rdkit < Formula
 
     # Get Python location
     pyexec = if build.with? "python3" then `which python3`.strip else `which python`.strip end
-    pypref = %x(#{pyexec} -c 'import sysconfig;print(sysconfig.get_config_var("prefix"))').chomp
-    pyinc = %x(#{pyexec} -c 'import sysconfig;print(sysconfig.get_path("include"))').chomp
+    pypref = %x(#{pyexec} -c 'import sys;print(sys.prefix)').chomp
+    pyinc = %x(#{pyexec} -c 'import distutils.sysconfig;print(distutils.sysconfig.get_python_inc(True))').chomp
     pyvers = "python" + %x(#{pyexec} -c 'import sys;print(sys.version[:3])').chomp
     args << "-DPYTHON_EXECUTABLE='#{pyexec}'"
     args << "-DPYTHON_INCLUDE_DIR='#{pyinc}'"
