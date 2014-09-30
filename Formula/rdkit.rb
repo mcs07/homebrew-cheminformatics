@@ -62,7 +62,7 @@ class Rdkit < Formula
     # Get Python location
     pyexec = if build.with? "python3" then `which python3`.strip else `which python`.strip end
     pypref = %x(#{pyexec} -c 'import sys;print(sys.prefix)').chomp
-    pyinc = %x(#{pyexec} -c 'import distutils.sysconfig;print(distutils.sysconfig.get_python_inc(True))').chomp
+    pyinc = %x(#{pyexec} -c 'from distutils import sysconfig;print(sysconfig.get_python_inc(True))').chomp
     pyvers = "python" + %x(#{pyexec} -c 'import sys;print(sys.version[:3])').chomp
     args << "-DPYTHON_EXECUTABLE='#{pyexec}'"
     args << "-DPYTHON_INCLUDE_DIR='#{pyinc}'"
