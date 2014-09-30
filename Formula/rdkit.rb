@@ -105,4 +105,8 @@ class Rdkit < Formula
       end
     end
   end
+
+  test do
+    system "python -c 'from rdkit import Chem'"
+  end
 end
