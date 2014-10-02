@@ -2,7 +2,7 @@ require 'formula'
 
 class OpenBabel < Formula
   homepage 'http://www.openbabel.org'
-  url 'http://downloads.sourceforge.net/project/openbabel/openbabel/2.3.2/openbabel-2.3.2.tar.gz'
+  url 'https://downloads.sourceforge.net/project/openbabel/openbabel/2.3.2/openbabel-2.3.2.tar.gz'
   sha1 'b8831a308617d1c78a790479523e43524f07d50d'
 
   head do
@@ -81,7 +81,7 @@ class OpenBabel < Formula
 
   def caveats
     s = 'Using the --HEAD option is highly recommended, v2.3.2 is now very old.'
-    if not build.with?('python')
+    if build.without?('python')
       s += <<-EOS.undent
 
         Instead of using the --with-python option, you may wish to install the
