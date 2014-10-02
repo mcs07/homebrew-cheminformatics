@@ -2,12 +2,16 @@ require 'formula'
 
 class OpenBabel < Formula
   homepage 'http://www.openbabel.org'
-  # head-only for now...
-  #url 'http://downloads.sourceforge.net/project/openbabel/openbabel/2.3.2/openbabel-2.3.2.tar.gz'
-  #sha1 'b8831a308617d1c78a790479523e43524f07d50d'
+  url 'http://downloads.sourceforge.net/project/openbabel/openbabel/2.3.2/openbabel-2.3.2.tar.gz'
+  sha1 'b8831a308617d1c78a790479523e43524f07d50d'
 
   head do
     url 'https://github.com/openbabel/openbabel.git', :branch => 'master'
+  end
+
+  bottle do
+    root_url "http://assets.matt-swain.com/homebrew"
+    sha1 "aec4f047c0c0c390e13621d40608954b109a4e7c" => :mavericks
   end
 
   option 'without-cairo', 'Build without PNG depiction'
@@ -24,6 +28,12 @@ class OpenBabel < Formula
   depends_on 'eigen'
   depends_on 'inchi'
 
+  # Backport upstream commit to support libc++ on OS X 10.9+
+  patch do
+    url "https://gist.githubusercontent.com/mcs07/a5e170d9ad5b53d75463/raw/2c28b011c5050cf24fb45bd1ec11eca2abb8524b/open-babel-mavericks.diff"
+    sha1 "78781b6c7611da735d2875e94ee484349080dab6"
+  end if not build.head?
+
   def install
     args = std_cmake_parameters.split
     args << "-DOPENBABEL_USE_SYSTEM_INCHI=ON"
@@ -31,13 +41,27 @@ class OpenBabel < Formula
     args << "-DJAVA_BINDINGS=ON" if build.with? 'java'
     args << "-DBUILD_GUI=ON" if build.with? 'wxmac'
 
+    # Automatic path detection for InChI and Cairo is fixed after v2.3.2
+    if not build.head?
+      args << "-DINCHI_INCLUDE_DIR='#{HOMEBREW_PREFIX}/include/inchi/'"
+      args << "-DINCHI_LIBRARY='#{HOMEBREW_PREFIX}/lib/libinchi.dylib'"
+      args << "-DCAIRO_INCLUDE_DIRS='#{HOMEBREW_PREFIX}/include/cairo'" if build.with? 'cairo'
+      args << "-DCAIRO_LIBRARIES='#{HOMEBREW_PREFIX}/lib/libcairo.dylib'" if build.with? 'cairo'
+    end
+
     if build.with?('python')
-      pyvers = "python" + %x(python -c 'import sys;print(sys.version[:3])').chomp
-      pypref = %x(python-config --prefix).chomp
+      pyvers = "python" + `python -c 'import sys;print(sys.version[:3])'`.strip
+      pypref = `python -c 'import sys;print(sys.prefix)'`.strip
+      pyinc = `python -c 'from distutils import sysconfig;print(sysconfig.get_python_inc(True))'`.strip
       args << "-DPYTHON_BINDINGS=ON"
-      args << "-DPYTHON_INCLUDE_DIR='#{pypref}/include/#{pyvers}'"
-      args << "-DPYTHON_LIBRARY='#{pypref}/lib/lib#{pyvers}.dylib'"
-      args << "-DPYTHON_PACKAGES_PATH='#{lib}/#{pyvers}/site-packages'"
+      args << "-DPYTHON_INCLUDE_DIR='#{pyinc}'"
+      if File.exist? "#{pypref}/Python"
+        args << "-DPYTHON_LIBRARY='#{pypref}/Python'"
+      elsif File.exists? "#{pypref}/lib/lib#{pyvers}.a"
+        args << "-DPYTHON_LIBRARY='#{pypref}/lib/lib#{pyvers}.a'"
+      else
+        args << "-DPYTHON_LIBRARY='#{pypref}/lib/lib#{pyvers}.dylib'"
+      end
     end
 
     args << '..'
@@ -47,10 +71,16 @@ class OpenBabel < Formula
       system "make"
       system "make install"
     end
+
+    # Python install to site-packages fixed after v2.3.2
+    if build.with?('python') && !build.head?
+      pyvers = "python" + `python -c 'import sys;print(sys.version[:3])'`.strip
+      (lib+"#{pyvers}/site-packages").install lib/'openbabel.py', lib/'pybel.py', lib/'_openbabel.so'
+    end
   end
 
   def caveats
-    s = 'Always use the --HEAD option, given up on supporting v2.3.2 for now.'
+    s = 'Using the --HEAD option is highly recommended, v2.3.2 is now very old.'
     if not build.with?('python')
       s += <<-EOS.undent
 
@@ -71,9 +101,9 @@ class OpenBabel < Formula
   end
 
   test do
-    system "#{bin}/obabel --help"
-    system "#{bin}/obabel -:'C1=CC=CC=C1Br' -ocan"
-    system "#{bin}/obabel -:'C1=CC=CC=C1Br' -omol"
-    system "#{bin}/obabel -:'C1=CC=CC=C1Br' -oinchi"
+    system "obabel --help"
+    system "obabel -:'C1=CC=CC=C1Br' -ocan"
+    system "obabel -:'C1=CC=CC=C1Br' -omol"
+    system "obabel -:'C1=CC=CC=C1Br' -oinchi"
   end
 end
