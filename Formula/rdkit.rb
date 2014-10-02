@@ -107,6 +107,16 @@ class Rdkit < Formula
   end
 
   test do
-    system "python -c 'from rdkit import Chem'"
+    (testpath/"rdtest.cpp").write <<-EOS.undent
+      #include <GraphMol/RDKitBase.h>
+      #include <GraphMol/SmilesParse/SmilesParse.h>
+      using namespace RDKit;
+      int main(int argc, char *argv[]) {
+          RWMol *mol = SmilesToMol("C=CC=CC=C", false);
+          mol->debugMol(std::cout);
+      }
+    EOS
+    system ENV.cxx, "-I#{HOMEBREW_PREFIX}/include/rdkit", "-L#{HOMEBREW_PREFIX}/lib", "-lSmilesParse", "-lGraphMol", "-lRDGeometryLib", "-lRDGeneral", "-o", "rdtest", "rdtest.cpp"
+    system "./rdtest"
   end
 end
