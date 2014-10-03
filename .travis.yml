@@ -12,15 +12,24 @@ env:
   - PACKAGE=checkmol
   - PACKAGE=chemistry-development-kit
   - PACKAGE=cluster
+  - PACKAGE=cluster OPTIONS=--with-lesstif
   - PACKAGE=critic2
+  - PACKAGE=critic2 OPTIONS=--with-libxc
   - PACKAGE=filter-it
   - PACKAGE=helium
+  - PACKAGE=helium OPTIONS=--with-helium
+  - PACKAGE=helium OPTIONS=--with-open-babel
   - PACKAGE=inchi
+  - PACKAGE=inchi OPTIONS=--build-from-source
   - PACKAGE=jcompoundmapper
   - PACKAGE=travis/testtap/open-babel
+  - PACKAGE=travis/testtap/open-babel OPTIONS=--build-from-source
   - PACKAGE=opsin
   - PACKAGE=osra
   - PACKAGE=rdkit
+  - PACKAGE=rdkit OPTIONS=--with-pycairo
+  - PACKAGE=rdkit OPTIONS=--with-postgresql
+  - PACKAGE=rdkit OPTIONS=--with-avalon
   - PACKAGE=shape-it
   - PACKAGE=smartcyp
   - PACKAGE=strip-it
