@@ -3,7 +3,7 @@ require "formula"
 class Critic2 < Formula
   homepage "http://gatsby.ucmerced.edu/wiki/Critic2"
   url "http://gatsby.ucmerced.edu/downloads/critic2/critic2-1.0.tar.gz"
-  sha1 "2b824a23def56e814d0893b89b26881f1373fb32"
+  sha1 "e0899ad64e10e63226ae69433af717535b5bca7f"
 
   bottle do
     root_url "http://assets.matt-swain.com/homebrew"
