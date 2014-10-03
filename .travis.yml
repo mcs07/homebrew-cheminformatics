@@ -27,7 +27,6 @@ env:
   - PACKAGE=opsin
   - PACKAGE=osra
   - PACKAGE=rdkit
-  - PACKAGE=rdkit OPTIONS=--with-pycairo
   - PACKAGE=rdkit OPTIONS=--with-postgresql
   - PACKAGE=rdkit OPTIONS=--with-avalon
   - PACKAGE=shape-it

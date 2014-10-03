@@ -44,7 +44,7 @@ There is already an (outdated) Open Babel formula in the main homebrew repositor
     
     brew install mcs07/cheminformatics/open-babel --HEAD
 
-Getting the latest development version using the `--HEAD` option is also recommended for Open Babel because v2.3.2 no longer compiles on OS X 10.9 and higher.
+Getting the latest development version using the `--HEAD` option is also recommended for Open Babel because v2.3.2 requires patching to compile on OS X 10.9 and higher.
 
 ## Feedback and requests
 
