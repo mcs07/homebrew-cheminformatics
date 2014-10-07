@@ -46,6 +46,15 @@ There is already an (outdated) Open Babel formula in the main homebrew repositor
 
 Getting the latest development version using the `--HEAD` option is also recommended for Open Babel because v2.3.2 requires patching to compile on OS X 10.9 and higher.
 
+## RDKit and Python 3
+
+For Python 3 support in RDKit, install the latest development version using both the `--HEAD` option and the `--with-python3` option.
+
+RDKit can have trouble finding the correct boost-python3 libraries. If you get errors installing RDKit, consider installing boost-python without support for python 2:
+    
+    brew install boost-python --without-python --with-python3
+    brew install rdkit --HEAD --with-python3
+
 ## Feedback and requests
 
 Please add any requests for a new formula or bug reports to the [Github issue tracker](https://github.com/mcs07/homebrew-cheminformatics/issues). Alternatively, email me at m.swain@me.com.
