@@ -8,6 +8,7 @@ class Osra < Formula
   bottle do
     root_url "http://assets.matt-swain.com/homebrew"
     sha1 "7a441e74343c5f986a1b619692f028174d360075" => :mavericks
+    sha1 "418dd41170b5024b1aec4af9de4c9700eeb43114" => :yosemite
   end
 
   depends_on 'freetype'

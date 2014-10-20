@@ -11,6 +11,7 @@ class Inchi < Formula
     root_url "http://assets.matt-swain.com/homebrew"
     cellar :any
     sha1 "a27211c7db8b67fb2784562cca515b9da4f4bed7" => :mavericks
+    sha1 "94efa46d4bbe0872e90c173d354037e75001a7e4" => :yosemite
   end
 
   # Patch makefile to support Mac OS X

@@ -11,6 +11,7 @@ class FilterIt < Formula
     root_url "http://assets.matt-swain.com/homebrew"
     cellar :any
     sha1 "93e3b8f52669021e979e00369dfeae8618d00986" => :mavericks
+    sha1 "2407e58071f0c3c228afeb87fc611f530b2f5d33" => :yosemite
   end
 
   depends_on 'cmake' => :build

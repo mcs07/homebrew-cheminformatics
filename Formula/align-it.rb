@@ -11,6 +11,7 @@ class AlignIt < Formula
     root_url "http://assets.matt-swain.com/homebrew"
     cellar :any
     sha1 "df26944b222df242c2cca8aaf6e32825c2667c32" => :mavericks
+    sha1 "31a66985e7c81c8d61185574152482258b8cea46" => :yosemite
   end
 
   depends_on 'cmake' => :build

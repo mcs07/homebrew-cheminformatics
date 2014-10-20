@@ -9,6 +9,7 @@ class Checkmol < Formula
     root_url "http://assets.matt-swain.com/homebrew"
     cellar :any
     sha1 "3a425bc13d2d4df977f4a7cf2ef207b6c6f94b67" => :mavericks
+    sha1 "5df1be66e3de91b7fe069e7a9aa23c0e7b397154" => :yosemite
   end
 
   depends_on "fpc" => :build

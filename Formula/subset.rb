@@ -9,6 +9,7 @@ class Subset < Formula
     root_url "http://assets.matt-swain.com/homebrew"
     cellar :any
     sha1 "66f6def35f21cc7c54deb6c50f69b074d70c3c46" => :mavericks
+    sha1 "dfabece41bcd37b0237b49940d081696cb4948cf" => :yosemite
   end
 
   # Patch to skip tests in makefile

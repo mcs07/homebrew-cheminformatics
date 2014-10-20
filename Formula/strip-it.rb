@@ -11,6 +11,7 @@ class StripIt < Formula
     root_url "http://assets.matt-swain.com/homebrew"
     cellar :any
     sha1 "3537f91d1d38d674e91849d85d2c958de70bbc6b" => :mavericks
+    sha1 "63a07fd2dc2850f706256d43b0b17ad6d455bf57" => :yosemite
   end
 
   depends_on 'cmake' => :build

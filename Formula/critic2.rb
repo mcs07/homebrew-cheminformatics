@@ -9,6 +9,7 @@ class Critic2 < Formula
     root_url "http://assets.matt-swain.com/homebrew"
     revision 1
     sha1 "0af1bfae11e549f90e150c8f4949708accde0f7b" => :mavericks
+    sha1 "81d95920aa175c5de1394a234b73a5479470e33f" => :yosemite
   end
 
   option "with-libxc", "Build with libxc support to calculate exchange and correlation energy densities"

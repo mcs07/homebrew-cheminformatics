@@ -10,6 +10,7 @@ class Avalon < Formula
     root_url "http://assets.matt-swain.com/homebrew"
     cellar :any
     sha1 "bd4d459e6a70d3bfb0d07925f477a64715091dc9" => :mavericks
+    sha1 "b95bab21cdeb7dddbfbba196a59caf75b32a0e49" => :yosemite
   end
 
   def install

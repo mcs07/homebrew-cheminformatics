@@ -12,6 +12,7 @@ class OpenBabel < Formula
   bottle do
     root_url "http://assets.matt-swain.com/homebrew"
     sha1 "aec4f047c0c0c390e13621d40608954b109a4e7c" => :mavericks
+    sha1 "6fe17fddc533f2abb91f0ca3c19bf74d07cb2cec" => :yosemite
   end
 
   option 'without-cairo', 'Build without PNG depiction'

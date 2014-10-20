@@ -9,6 +9,7 @@ class Cluster < Formula
     root_url "http://assets.matt-swain.com/homebrew"
     cellar :any
     sha1 "60270744d3c61ea7b625190efdb05742aeebcb55" => :mavericks
+    sha1 "e64243a1e2b9df9d753dca156bd08473c4fc56fa" => :yosemite
   end
 
   option 'with-lesstif',  'Build GUI'

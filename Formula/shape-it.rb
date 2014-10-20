@@ -11,6 +11,7 @@ class ShapeIt < Formula
     root_url "http://assets.matt-swain.com/homebrew"
     cellar :any
     sha1 "eea2a2101b78fddd475ac4f3b1b9fee857fff407" => :mavericks
+    sha1 "05b992c6e74433a1b3fbb00e41f4f2f1dfbaeaa8" => :yosemite
   end
 
   depends_on 'cmake' => :build

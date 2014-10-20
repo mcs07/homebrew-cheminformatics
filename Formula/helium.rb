@@ -14,6 +14,7 @@ class Helium < Formula
     cellar :any
     revision 1
     sha1 "c7302dc66eb6a4d9c3e00e53660faaafb1acfdaf" => :mavericks
+    sha1 "e98616fd1f0ee27a9767100a86bc79457d24b247" => :yosemite
   end
 
   option "with-python", "Build with Python language bindings"
