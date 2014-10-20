@@ -6,10 +6,10 @@ class Rdkit < Formula
   sha1 "7db855bd78abe13afa3436fded03c7a4449f1b3b"
 
   # devel version only needed when there is a beta release
-  # devel do
-  #   url "https://github.com/rdkit/rdkit/archive/Release_2014_03_1beta1.tar.gz"
-  #   version "2014.03.1b1"
-  # end
+  devel do
+    url "https://github.com/rdkit/rdkit/archive/2014_09_1beta1.tar.gz"
+    version "2014.09.1b1"
+  end
 
   head do
     url "https://github.com/rdkit/rdkit.git"
