@@ -14,19 +14,18 @@ end
 
 class Chargemol < Formula
   homepage "http://ddec.sourceforge.net"
-  url "https://downloads.sourceforge.net/project/ddec/chargemol_06_09_2014.zip", :using => CustomZipDownloadStrategy
-  sha1 "4f58bf5a74b77ad6ea80bb483cac2f9a0a7b3cb5"
+  url "https://downloads.sourceforge.net/project/ddec/chargemol_09_14_2014.zip", :using => CustomZipDownloadStrategy
+  sha1 "6d34efbbbfd356097bebff46257008d5765ff496"
 
   bottle do
     root_url "http://assets.matt-swain.com/homebrew"
-    revision 1
-    sha1 "d35d8b13a84c65beca9c21079c3c7096b571fe1a" => :mavericks
+    sha1 "2869ad2fa52434d5ca22ec7a66e3f5e91255bb1e" => :yosemite
   end
 
   depends_on :fortran
 
   def install
-    cd "chargemol_06_09_2014/chargemol_FORTRAN_06_09_2014/sourcecode" do
+    cd "chargemol_09_14_2014/chargemol_FORTRAN_09_14_2014/sourcecode" do
       # This should match the contents of compile_serial.txt
       # parallel compile does not work for some reason
       system ENV["FC"], "-ochargemol", "-static-libgfortran", "precise.f08", "global_parameters.f08",
@@ -41,7 +40,7 @@ class Chargemol < Formula
         "module_atomic_symbol_to_number.f08", "module_compute_dominant_atom_volumes.f08",
         "module_format_vasp_densities.f08", "module_run_valence_core_densities.f08", "module_core_iterator.f08",
         "module_local_multipole_moment_analysis.f08", "module_update_atomic_densities.f08",
-        "module_valence_iterator.f08", "module_compute_center_of_mass.f08",
+        "module_DDEC3_valence_iterator.f08", "module_DDEC4_valence_iterator.f08", "module_compute_center_of_mass.f08",
         "module_total_multipole_moment_analysis.f08", "module_cloud_penetration.f08",
         "module_atomic_number_to_symbol.f08", "module_generate_net_atomic_charge_file.f08", "Xi_mod.f08",
         "module_generate_spin_lookup_tables.f08", "module_fast_calculate_functions.f08",
@@ -53,10 +52,10 @@ class Chargemol < Formula
         "module_update_bond_pair_matrix.f08", "module_compute_comp_zero_atomic_valences_and_overlap_terms.f08",
         "module_initialize_bond_pair_matrix.f08", "module_compute_local_atomic_exchange_vectors.f08",
         "module_prepare_EBO_density_grids.f08", "module_statistical_EBO_coefficients.f08",
-        "module_perform_EBO_analysis.f08", "chargemol.f08"
+        "module_perform_EBO_analysis.f08", "module_compute_atomic_Rcubed_moments.f08", "chargemol.f08"
       bin.install "chargemol"
     end
-    (share/"chargemol").install "chargemol_06_09_2014/atomic_densities"
+    (share/"chargemol").install "chargemol_09_14_2014/atomic_densities"
   end
 
   def caveats; <<-EOS.undent
