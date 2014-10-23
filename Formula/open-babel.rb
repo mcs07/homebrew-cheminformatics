@@ -2,8 +2,17 @@ require 'formula'
 
 class OpenBabel < Formula
   homepage 'http://www.openbabel.org'
-  url 'https://downloads.sourceforge.net/project/openbabel/openbabel/2.3.2/openbabel-2.3.2.tar.gz'
-  sha1 'b8831a308617d1c78a790479523e43524f07d50d'
+
+  stable do
+    url 'https://downloads.sourceforge.net/project/openbabel/openbabel/2.3.2/openbabel-2.3.2.tar.gz'
+    sha1 'b8831a308617d1c78a790479523e43524f07d50d'
+
+    # Backport upstream commit to support libc++ on OS X 10.9+
+    patch do
+      url "https://gist.githubusercontent.com/mcs07/a5e170d9ad5b53d75463/raw/2c28b011c5050cf24fb45bd1ec11eca2abb8524b/open-babel-mavericks.diff"
+      sha1 "78781b6c7611da735d2875e94ee484349080dab6"
+    end
+  end
 
   head do
     url 'https://github.com/openbabel/openbabel.git', :branch => 'master'
@@ -28,12 +37,6 @@ class OpenBabel < Formula
   depends_on 'swig' if build.with?('python') || build.with?('java')
   depends_on 'eigen'
   depends_on 'inchi'
-
-  # Backport upstream commit to support libc++ on OS X 10.9+
-  patch do
-    url "https://gist.githubusercontent.com/mcs07/a5e170d9ad5b53d75463/raw/2c28b011c5050cf24fb45bd1ec11eca2abb8524b/open-babel-mavericks.diff"
-    sha1 "78781b6c7611da735d2875e94ee484349080dab6"
-  end if not build.head?
 
   def install
     args = std_cmake_parameters.split
