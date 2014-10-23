@@ -15,7 +15,7 @@ class OpenBabel < Formula
   end
 
   head do
-    url 'https://github.com/openbabel/openbabel.git', :branch => 'master'
+    url 'https://github.com/openbabel/openbabel.git'
   end
 
   bottle do
