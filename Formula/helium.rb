@@ -3,6 +3,7 @@ require "formula"
 class Helium < Formula
   homepage "http://moldb.net/helium.html"
   url "http://moldb.net/helium-0.2.0.tar.gz"
+  mirror "http://assets.matt-swain.com/homebrew/helium-0.2.0.tar.gz"
   sha1 "6c6711095d522ed5a0912daa1c54ae0de803c79a"
 
   head do
