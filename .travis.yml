@@ -8,6 +8,7 @@ install:
 env:
   - PACKAGE=align-it
   - PACKAGE=avalon
+  - PACKAGE=avalon OPTIONS=--build-from-source
   - PACKAGE=chargemol
   - PACKAGE=checkmol
   - PACKAGE=chemistry-development-kit
@@ -17,7 +18,7 @@ env:
   - PACKAGE=critic2 OPTIONS=--with-libxc
   - PACKAGE=filter-it
   - PACKAGE=helium
-  - PACKAGE=helium OPTIONS=--with-helium
+  - PACKAGE=helium OPTIONS=--with-python
   - PACKAGE=helium OPTIONS=--with-open-babel
   - PACKAGE=inchi
   - PACKAGE=inchi OPTIONS=--build-from-source
