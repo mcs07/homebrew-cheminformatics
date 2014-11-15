@@ -1,10 +1,9 @@
 require 'formula'
 
 class ShapeIt < Formula
-  homepage 'http://www.silicos-it.com/software/shape-it/1.0.1/shape-it.html'
-  #url 'http://www.silicos-it.com/_php/download.php?file=shape-it-1.0.1.tar.gz'
-  # Temporary URL because silicos-it.com has disappeared
-  url 'http://assets.matt-swain.com/homebrew/shape-it-1.0.1.tar.gz'
+  homepage 'http://silicos-it.be.s3-website-eu-west-1.amazonaws.com/software/shape-it/1.0.1/shape-it.html'
+  url 'http://silicos-it.be.s3-website-eu-west-1.amazonaws.com/_downloads/shape-it-1.0.1.tar.gz'
+  mirror 'http://assets.matt-swain.com/homebrew/shape-it-1.0.1.tar.gz'
   sha1 '584dac228c10d1bd07b4ffd2cbac0efb5024025e'
 
   bottle do
