@@ -1,10 +1,9 @@
 require 'formula'
 
 class StripIt < Formula
-  homepage 'http://www.silicos-it.com/software/strip-it/1.0.2/strip-it.html'
-  #url 'http://www.silicos-it.com/_php/download.php?file=strip-it-1.0.2.tar.gz'
-  # Temporary URL because silicos-it.com has disappeared
-  url 'http://assets.matt-swain.com/homebrew/strip-it-1.0.2.tar.gz'
+  homepage 'http://silicos-it.be.s3-website-eu-west-1.amazonaws.com/software/strip-it/1.0.2/strip-it.html'
+  url 'http://silicos-it.be.s3-website-eu-west-1.amazonaws.com/_downloads/strip-it-1.0.2.tar.gz'
+  mirror 'http://assets.matt-swain.com/homebrew/strip-it-1.0.2.tar.gz'
   sha1 '5bd77184602475ce336d804077be0f7bb28bd6b0'
 
   bottle do
