@@ -3,12 +3,12 @@ require "formula"
 class Critic2 < Formula
   homepage "http://gatsby.ucmerced.edu/wiki/Critic2"
   url "http://gatsby.ucmerced.edu/downloads/critic2/critic2.tar.gz"
-  sha1 "ef56d588e770b6f783ab731b150b88cbcd37f60d"
-  version "3c65b7f"
+  sha1 "0756b84c2a904271522208a254e6b8c135ad6b0f"
+  version "443f7fb"
 
   bottle do
     root_url "http://assets.matt-swain.com/homebrew"
-    sha1 "7c3d6e4002b2dfa974a8953365812be28b93693a" => :yosemite
+    sha1 "5286279be83970c78c3655da85b2984a5f87230f" => :yosemite
   end
 
   option "with-libxc", "Build with libxc support to calculate exchange and correlation energy densities"
