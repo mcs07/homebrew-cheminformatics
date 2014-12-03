@@ -15,8 +15,8 @@ env:
   - PACKAGE=chemistry-development-kit
   - PACKAGE=cluster
   - PACKAGE=cluster OPTIONS=--with-lesstif
-  - PACKAGE=critic2 OPTIONS=--HEAD
-  - PACKAGE=critic2 OPTIONS="--HEAD --with-libxc"
+  - PACKAGE=critic2 OPTIONS=--HEAD HEADONLY=true
+  - PACKAGE=critic2 OPTIONS="--HEAD --with-libxc"  HEADONLY=true
   - PACKAGE=filter-it
   - PACKAGE=filter-it OPTIONS=--build-from-source
   - PACKAGE=helium
@@ -40,6 +40,6 @@ env:
   - PACKAGE=strip-it OPTIONS=--build-from-source
   - PACKAGE=subset
 script:
-  - brew audit $PACKAGE
+  - if ! [ "$HEADONLY" = true ]; then brew audit $PACKAGE; fi
   - brew install -v $PACKAGE $OPTIONS
   - brew test $PACKAGE
