@@ -15,8 +15,8 @@ env:
   - PACKAGE=chemistry-development-kit
   - PACKAGE=cluster
   - PACKAGE=cluster OPTIONS=--with-lesstif
-  - PACKAGE=critic2
-  - PACKAGE=critic2 OPTIONS=--with-libxc
+  - PACKAGE=critic2 OPTIONS=--HEAD
+  - PACKAGE=critic2 OPTIONS="--HEAD --with-libxc"
   - PACKAGE=filter-it
   - PACKAGE=filter-it OPTIONS=--build-from-source
   - PACKAGE=helium
@@ -27,6 +27,7 @@ env:
   - PACKAGE=jcompoundmapper
   - PACKAGE=travis/testtap/open-babel
   - PACKAGE=travis/testtap/open-babel OPTIONS=--build-from-source
+  - PACKAGE=travis/testtap/open-babel OPTIONS=--HEAD
   - PACKAGE=opsin
   - PACKAGE=osra
   - PACKAGE=rdkit
