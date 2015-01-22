@@ -18,6 +18,7 @@ env:
   - PACKAGE=cluster OPTIONS=--with-lesstif
   - PACKAGE=critic2 OPTIONS=--HEAD HEADONLY=true
   - PACKAGE=critic2 OPTIONS="--HEAD --with-libxc"  HEADONLY=true
+  - PACKAGE=ez-dyson
   - PACKAGE=filter-it
   - PACKAGE=filter-it OPTIONS=--build-from-source
   - PACKAGE=helium
