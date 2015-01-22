@@ -11,9 +11,7 @@ class EzDyson < Formula
   end
 
   def install
-    args = "-f", "mk.Mac"
-    args << "CCFLAGS=-O3 -fopenmp -lexpat"
-    system "make", *args
+    system "make", "-f", "mk.Mac", "CCFLAGS=-O3 -fopenmp -lexpat"
     bin.install "exedys"
   end
 
