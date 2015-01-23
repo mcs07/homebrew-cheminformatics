@@ -10,6 +10,10 @@ class EzDyson < Formula
     cause "Requires OpenMP"
   end
 
+  fails_with :gcc do
+    build 5666
+  end
+
   def install
     system "make", "-f", "mk.Mac", "CCFLAGS=-O3 -fopenmp -lexpat"
     bin.install "exedys"
