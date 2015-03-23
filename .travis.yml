@@ -8,7 +8,6 @@ install:
   - brew tap --repair
 env:
   - PACKAGE=align-it
-  - PACKAGE=align-it OPTIONS=--build-from-source
   - PACKAGE=avalon
   - PACKAGE=avalon OPTIONS=--build-from-source
   - PACKAGE=chargemol
@@ -20,7 +19,6 @@ env:
   - PACKAGE=critic2 OPTIONS="--HEAD --with-libxc"  HEADONLY=true
   - PACKAGE=ez-dyson
   - PACKAGE=filter-it
-  - PACKAGE=filter-it OPTIONS=--build-from-source
   - PACKAGE=helium
   - PACKAGE=helium OPTIONS=--with-python
   - PACKAGE=helium OPTIONS=--with-open-babel
@@ -28,7 +26,6 @@ env:
   - PACKAGE=inchi OPTIONS=--build-from-source
   - PACKAGE=jcompoundmapper
   - PACKAGE=travis/testtap/open-babel
-  - PACKAGE=travis/testtap/open-babel OPTIONS=--build-from-source
   - PACKAGE=travis/testtap/open-babel OPTIONS=--HEAD
   - PACKAGE=opsin
   - PACKAGE=osra
@@ -36,10 +33,8 @@ env:
   - PACKAGE=rdkit OPTIONS=--with-postgresql
   - PACKAGE=rdkit OPTIONS=--with-avalon
   - PACKAGE=shape-it
-  - PACKAGE=shape-it OPTIONS=--build-from-source
   - PACKAGE=smartcyp
   - PACKAGE=strip-it
-  - PACKAGE=strip-it OPTIONS=--build-from-source
   - PACKAGE=subset
 script:
   - if ! [ "$HEADONLY" = true ]; then brew audit $PACKAGE; fi
