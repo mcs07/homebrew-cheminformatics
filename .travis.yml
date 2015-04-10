@@ -27,6 +27,8 @@ env:
   - PACKAGE=jcompoundmapper
   - PACKAGE=travis/testtap/open-babel
   - PACKAGE=travis/testtap/open-babel OPTIONS=--HEAD
+  - PACKAGE=travis/testtap/open-babel OPTIONS="--HEAD --with-python"
+  - PACKAGE=travis/testtap/open-babel OPTIONS="--HEAD --with-python3"
   - PACKAGE=opsin
   - PACKAGE=osra
   - PACKAGE=rdkit

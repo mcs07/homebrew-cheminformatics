@@ -27,21 +27,23 @@ class OpenBabel < Formula
   option 'without-cairo', 'Build without PNG depiction'
   option 'with-java', 'Build with Java language bindings'
   option 'with-python', 'Build with Python language bindings'
+  option 'with-python3', 'Build with Python 3 language bindings'
   option 'with-wxmac', 'Build with GUI'
 
   depends_on 'pkg-config' => :build
   depends_on 'cmake' => :build
   depends_on :python => :optional
+  depends_on :python3 => :optional
   depends_on 'wxmac' => :optional
   depends_on 'cairo' => :recommended
-  depends_on 'swig' if build.with?('python') || build.with?('java')
+  depends_on 'swig' if build.with?('python') || build.with?('python3') || build.with?('java')
   depends_on 'eigen'
   depends_on 'inchi'
 
   def install
     args = std_cmake_parameters.split
     args << "-DOPENBABEL_USE_SYSTEM_INCHI=ON"
-    args << "-DRUN_SWIG=ON" if build.with?('python') || build.with?('java')
+    args << "-DRUN_SWIG=ON" if build.with?('python') || build.with?('python3') || build.with?('java')
     args << "-DJAVA_BINDINGS=ON" if build.with? 'java'
     args << "-DBUILD_GUI=ON" if build.with? 'wxmac'
 
@@ -53,11 +55,13 @@ class OpenBabel < Formula
       args << "-DCAIRO_LIBRARIES='#{HOMEBREW_PREFIX}/lib/libcairo.dylib'" if build.with? 'cairo'
     end
 
-    if build.with?('python')
-      pyvers = "python" + `python -c 'import sys;print(sys.version[:3])'`.strip
-      pypref = `python -c 'import sys;print(sys.prefix)'`.strip
-      pyinc = `python -c 'from distutils import sysconfig;print(sysconfig.get_python_inc(True))'`.strip
+    if build.with?('python') || build.with?('python3')
+      pyexec = if build.with?('python3') then `which python3`.strip else `which python`.strip end
+      pyvers = 'python' + %x(#{pyexec} -c 'import sys;print(sys.version[:3])').strip
+      pypref = %x(#{pyexec} -c 'import sys;print(sys.prefix)').strip
+      pyinc = %x(#{pyexec} -c 'from distutils import sysconfig;print(sysconfig.get_python_inc(True))').strip
       args << "-DPYTHON_BINDINGS=ON"
+      args << "-DPYTHON_EXECUTABLE='#{pyexec}'"
       args << "-DPYTHON_INCLUDE_DIR='#{pyinc}'"
       if File.exist? "#{pypref}/Python"
         args << "-DPYTHON_LIBRARY='#{pypref}/Python'"
@@ -85,14 +89,19 @@ class OpenBabel < Formula
 
   def caveats
     s = 'Using the --HEAD option is highly recommended, v2.3.2 is now very old.'
-    if build.without?('python')
+    if build.with?('python') and build.with?('python3')
       s += <<-EOS.undent
 
-        Instead of using the --with-python option, you may wish to install the
-        python language bindings independently using pip:
-          pip install openbabel
+        Open Babel cannot be installed from homebrew with simultaneous support
+        for both Python 2 and 3. Only Python 3 support has been provided.
       EOS
     end
+    s += <<-EOS.undent
+
+      Instead of using the --with-python option, you may wish to install the
+      python language bindings independently using pip:
+        pip install openbabel
+    EOS
     if build.with?('java')
       s += <<-EOS.undent
 
