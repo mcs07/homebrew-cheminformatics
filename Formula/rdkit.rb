@@ -3,13 +3,14 @@ require "formula"
 class Rdkit < Formula
   homepage "http://rdkit.org/"
   url "https://github.com/rdkit/rdkit/archive/Release_2014_09_2.tar.gz"
-  sha1 "b9c34dea8a53737d76fb670998f9610889c317e3"
+  sha256 "cc2e4be42c4dd8e419b58445d4527bc79c828cfd3567bdb6b870c12483349066"
 
-  # devel version only needed when there is a beta release
-  # devel do
-  #   url "https://github.com/rdkit/rdkit/archive/2014_09_1beta1.tar.gz"
-  #   version "2014.09.1b1"
-  # end
+  #devel version only needed when there is a beta release
+  devel do
+    url "https://github.com/rdkit/rdkit/archive/Release_2015_03_1beta1.tar.gz"
+    version "2015.03.1b1"
+    sha256 "0d6acefc71678c7c6b22687a6f508b49c93dc2734f98fd4f235067a4033cb650"
+  end
 
   head do
     url "https://github.com/rdkit/rdkit.git"
