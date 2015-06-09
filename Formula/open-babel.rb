@@ -38,7 +38,7 @@ class OpenBabel < Formula
   depends_on 'cairo' => :recommended
   depends_on 'swig' if build.with?('python') || build.with?('python3') || build.with?('java')
   depends_on 'eigen'
-  depends_on 'inchi'
+  depends_on 'mcs07/cheminformatics/inchi'
 
   def install
     args = std_cmake_parameters.split

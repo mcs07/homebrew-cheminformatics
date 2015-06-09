@@ -26,7 +26,7 @@ class Rdkit < Formula
   depends_on "swig" => :build if build.with? "java"
   depends_on "boost"
   depends_on :python3 => :optional
-  depends_on "inchi" => :recommended
+  depends_on "mcs07/cheminformatics/inchi" => :recommended
   depends_on :postgresql => :optional
 
   # Different dependencies if building for python3
@@ -44,7 +44,7 @@ class Rdkit < Formula
     args = std_cmake_parameters.split
     args << "-DRDK_INSTALL_INTREE=OFF"
 
-    # Optionally build Java language bindings
+    # Optionally build Java language bindings
     if build.with? "java"
       if not File.exists? "External/java_lib/junit.jar"
         mkdir "External/java_lib"
@@ -53,7 +53,7 @@ class Rdkit < Formula
       args << "-DRDK_BUILD_SWIG_WRAPPERS=ON"
     end
 
-    # Optionally build InChI support
+    # Optionally build InChI support
     if build.with? "inchi"
       args << "-DRDK_BUILD_INCHI_SUPPORT=ON"
       args << "-DINCHI_INCLUDE_DIR='#{HOMEBREW_PREFIX}/include/inchi/'"
