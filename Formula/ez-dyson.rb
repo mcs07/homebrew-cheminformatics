@@ -3,8 +3,8 @@ require 'formula'
 class EzDyson < Formula
   homepage "http://iopenshell.usc.edu/downloads/ezdyson/"
   url "http://iopenshell.usc.edu/downloads/ezdyson/ezdyson.v3.tar.gz"
-  version "3.0"
-  sha1 "1dd325fc2d77dd26cca571a4b0f3080dbf1992ac"
+  version "3.1"
+  sha1 "69c448008fde461a0c895ea57c90a5743066256a"
 
   fails_with :clang do
     cause "Requires OpenMP"
