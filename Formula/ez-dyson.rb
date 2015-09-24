@@ -4,7 +4,7 @@ class EzDyson < Formula
   homepage "http://iopenshell.usc.edu/downloads/ezdyson/"
   url "http://iopenshell.usc.edu/downloads/ezdyson/ezdyson.v3.tar.gz"
   version "3.1"
-  sha1 "69c448008fde461a0c895ea57c90a5743066256a"
+  sha256 "83eadb845d755c57469d21700d4cd3842c892e5a115bf8df256681c54aab96ca"
 
   fails_with :clang do
     cause "Requires OpenMP"
