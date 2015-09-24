@@ -4,7 +4,7 @@ class Avalon < Formula
   homepage "http://sourceforge.net/projects/avalontoolkit/"
   url "https://downloads.sourceforge.net/project/avalontoolkit/AvalonToolkit_1.2/AvalonToolkit_1.2.0.source.tar"
   version "1.2.0"
-  sha1 "d2936b1b55634d5aeffa2ba9514ab9d8ce50023f"
+  sha256 "fbae636280e4d8a682a454086a7622736dd52818d460a2d4514de8ae8cf7d666"
 
   bottle do
     root_url "http://assets.matt-swain.com/homebrew"
