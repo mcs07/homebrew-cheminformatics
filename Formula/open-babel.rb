@@ -5,12 +5,12 @@ class OpenBabel < Formula
 
   stable do
     url 'https://downloads.sourceforge.net/project/openbabel/openbabel/2.3.2/openbabel-2.3.2.tar.gz'
-    sha1 'b8831a308617d1c78a790479523e43524f07d50d'
+    sha256 '4eaca26679aa6cc85ebf96af19191472ac63ca442c36b0427b369c3a25705188'
 
     # Backport upstream commit to support libc++ on OS X 10.9+
     patch do
       url "https://gist.githubusercontent.com/mcs07/a5e170d9ad5b53d75463/raw/2c28b011c5050cf24fb45bd1ec11eca2abb8524b/open-babel-mavericks.diff"
-      sha1 "78781b6c7611da735d2875e94ee484349080dab6"
+      sha256 "d9031de3cd628c411a6cd2788492d7ac9bbc1107859a499776dcf93b99cb7c6f"
     end
   end
 
