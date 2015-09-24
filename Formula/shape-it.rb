@@ -4,7 +4,7 @@ class ShapeIt < Formula
   homepage 'http://silicos-it.be.s3-website-eu-west-1.amazonaws.com/software/shape-it/1.0.1/shape-it.html'
   url 'http://silicos-it.be.s3-website-eu-west-1.amazonaws.com/_downloads/shape-it-1.0.1.tar.gz'
   mirror 'http://assets.matt-swain.com/homebrew/shape-it-1.0.1.tar.gz'
-  sha1 '584dac228c10d1bd07b4ffd2cbac0efb5024025e'
+  sha256 '29dd8e9feef9f98ac637d82b7a08bf736a4f1fd74d82565c8c3a97aeb88dad21'
 
   bottle do
     root_url "http://assets.matt-swain.com/homebrew"
