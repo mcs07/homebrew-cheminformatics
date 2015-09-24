@@ -3,7 +3,7 @@ require 'formula'
 class Osra < Formula
   homepage 'http://osra.sourceforge.net'
   url 'https://downloads.sourceforge.net/project/osra/osra/2.0.0/osra-2.0.0.tgz'
-  sha1 '318862b556014066d68342a843a470993877e8a9'
+  sha256 '197a7705616df7b01363ca86e990c5a961258ff31a5074e6c57670ce5f3e3ead'
 
   bottle do
     root_url "http://assets.matt-swain.com/homebrew"
