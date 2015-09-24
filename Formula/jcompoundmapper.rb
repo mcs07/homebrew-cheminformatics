@@ -4,7 +4,7 @@ class Jcompoundmapper < Formula
   homepage 'http://jcompoundmapper.sourceforge.net'
   url 'https://downloads.sourceforge.net/project/jcompoundmapper/jCMapperCLI.jar'
   version '2012.12.03'
-  sha1 '2405f6dd33d15db8719b685ec2afd2b6fcb5fee8'
+  sha256 '88235915bed3ab85f902d0413ca9d1b8c40899cb24c1fa3a3f2aa2170827788d'
 
   def install
     libexec.install 'jCMapperCLI.jar'
