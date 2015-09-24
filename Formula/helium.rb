@@ -4,7 +4,7 @@ class Helium < Formula
   homepage "http://moldb.net/helium.html"
   url "http://moldb.net/helium-0.2.0.tar.gz"
   mirror "http://assets.matt-swain.com/homebrew/helium-0.2.0.tar.gz"
-  sha1 "6c6711095d522ed5a0912daa1c54ae0de803c79a"
+  sha256 "4885fd8e5412ec405d64412b442abc9d96259e71a20b3a34d48398e7b87bcdb0"
 
   head do
     url "https://github.com/timvdm/Helium.git"
