@@ -3,7 +3,7 @@ require "formula"
 class Smartcyp < Formula
   homepage "http://www.farma.ku.dk/smartcyp/"
   url "http://www.farma.ku.dk/smartcyp/smartcyp.jar"
-  sha1 "9a91b540ef2b602707c5cdecfc6f3c932bb64308"
+  sha256 "d39456abb7c8c8376c1257feeee7f9cd6bbdaa060d139ec48736cfe068d5ad9c"
   version '2.4.2'
 
   def install
