@@ -3,7 +3,7 @@ require "formula"
 class Cluster < Formula
   homepage "http://bonsai.hgc.jp/~mdehoon/software/cluster/software.htm"
   url "http://bonsai.hgc.jp/~mdehoon/software/cluster/cluster-1.52.tar.gz"
-  sha1 "7e983ffc8951a183e717c30f3b25b655c2fd697f"
+  sha256 "99425e282647184e57b9f275d7eb4bdec8cd4bd4f61f75c3260158e1191d3177"
 
   bottle do
     root_url "http://assets.matt-swain.com/homebrew"
