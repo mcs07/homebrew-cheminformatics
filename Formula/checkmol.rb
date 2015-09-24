@@ -3,7 +3,7 @@ require "formula"
 class Checkmol < Formula
   homepage "http://merian.pch.univie.ac.at/~nhaider/cheminf/cmmm.html"
   url "http://merian.pch.univie.ac.at/pch/download/chemistry/checkmol/checkmol-0.5.pas"
-  sha1 "956548cbc35633a53b5a8a01136ac16119cea92c"
+  sha256 "53c729ed4c2f98a19f2ede8280189d766e6107d980ba2410e98f541c0d852829"
 
   bottle do
     root_url "http://assets.matt-swain.com/homebrew"
