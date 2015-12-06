@@ -25,4 +25,4 @@ before_install:
   - env | grep TRAVIS_
 
 script:
-  - brew test-bot --tap=mcs07/cheminformatics --ci-testing
+  - brew test-bot --tap=mcs07/cheminformatics
