@@ -1,44 +1,26 @@
 language: objective-c
-sudo: false
+matrix:
+  include:
+    - env: OSX=10.11
+      os: osx
+      osx_image: osx10.11
+      rvm: system
+    - env: OSX=10.10
+      os: osx
+      osx_image: xcode7
+      rvm: system
+    - env: OSX=10.9 HOMEBREW_RUBY=1.8.7
+      os: osx
+      osx_image: beta-xcode6.2
+      rvm: system
+
 before_install:
+  - if [ -f ".git/shallow" ]; then travis_retry git fetch --unshallow; fi
+  - sudo chown -R $USER $(brew --repo)
   - brew update
-install:
-  - mkdir -p $(brew --repo)/Library/Taps/travis
-  - ln -s $PWD $(brew --repo)/Library/Taps/travis/homebrew-testtap
-  - brew tap --repair
-env:
-  - PACKAGE=align-it
-  - PACKAGE=avalon
-  - PACKAGE=avalon OPTIONS=--build-from-source
-  - PACKAGE=chargemol
-  - PACKAGE=checkmol
-  - PACKAGE=chemistry-development-kit
-  - PACKAGE=cluster
-  - PACKAGE=cluster OPTIONS=--with-lesstif
-  - PACKAGE=critic2 OPTIONS=--HEAD HEADONLY=true
-  - PACKAGE=critic2 OPTIONS="--HEAD --with-libxc"  HEADONLY=true
-  - PACKAGE=ez-dyson
-  - PACKAGE=filter-it
-  - PACKAGE=helium
-  - PACKAGE=helium OPTIONS=--with-python
-  - PACKAGE=helium OPTIONS=--with-open-babel
-  - PACKAGE=inchi
-  - PACKAGE=inchi OPTIONS=--build-from-source
-  - PACKAGE=jcompoundmapper
-  - PACKAGE=travis/testtap/open-babel
-  - PACKAGE=travis/testtap/open-babel OPTIONS=--HEAD
-  - PACKAGE=travis/testtap/open-babel OPTIONS="--HEAD --with-python"
-  - PACKAGE=travis/testtap/open-babel OPTIONS="--HEAD --with-python3"
-  - PACKAGE=opsin
-  - PACKAGE=osra
-  - PACKAGE=rdkit
-  - PACKAGE=rdkit OPTIONS=--with-postgresql
-  - PACKAGE=rdkit OPTIONS=--with-avalon
-  - PACKAGE=shape-it
-  - PACKAGE=smartcyp
-  - PACKAGE=strip-it
-  - PACKAGE=subset
+  - ln -s $PWD $(brew --repo)/Library/Taps/mcs07/homebrew-cheminformatics
+  - cd $(brew --repo)/Library/Taps/mcs07/homebrew-cheminformatics
+  - export TRAVIS_BUILD_DIR="$(brew --repo)/Library/Taps/mcs07/homebrew-cheminformatics"
+
 script:
-  - if ! [ "$HEADONLY" = true ]; then brew audit $PACKAGE; fi
-  - brew install -v $PACKAGE $OPTIONS
-  - brew test $PACKAGE
+  - brew test-bot --tap=mcs07/cheminformatics
