@@ -17,11 +17,12 @@ matrix:
 before_install:
   - if [ -f ".git/shallow" ]; then travis_retry git fetch --unshallow; fi
   - sudo chown -R $USER $(brew --repo)
-  - brew tap mcs07/cheminformatics
   - brew update
+  - mkdir -p $(brew --repo)/Library/Taps/mcs07
   - ln -s $PWD $(brew --repo)/Library/Taps/mcs07/homebrew-cheminformatics
   - cd $(brew --repo)/Library/Taps/mcs07/homebrew-cheminformatics
   - export TRAVIS_BUILD_DIR="$(brew --repo)/Library/Taps/mcs07/homebrew-cheminformatics"
+  - env | grep TRAVIS_
 
 script:
   - brew test-bot --tap=mcs07/cheminformatics
