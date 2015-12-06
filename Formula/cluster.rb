@@ -2,8 +2,8 @@ require "formula"
 
 class Cluster < Formula
   homepage "http://bonsai.hgc.jp/~mdehoon/software/cluster/software.htm"
-  url "http://bonsai.hgc.jp/~mdehoon/software/cluster/cluster-1.52.tar.gz"
-  sha256 "99425e282647184e57b9f275d7eb4bdec8cd4bd4f61f75c3260158e1191d3177"
+  url "http://bonsai.hgc.jp/~mdehoon/software/cluster/cluster-1.52a.tar.gz"
+  sha256 "e503a1b4680341a516b28804b3bfdbdefd7d8f01a0db659da7cb23f708ac1cd1"
 
   bottle do
     root_url "http://assets.matt-swain.com/homebrew"
