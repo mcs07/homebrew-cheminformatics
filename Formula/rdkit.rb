@@ -98,17 +98,10 @@ class Rdkit < Formula
 
     # Optionally build PostgreSQL cartridge
     if build.with? "postgresql"
-      ENV["RDBASE"] = "#{prefix}"
-      ENV.append "CFLAGS", "-I#{include}/rdkit"
-      if build.with? 'inchi'
-        ENV["USE_THREADS"] = 1
-        ENV["USE_INCHI"] = 1
-      end
-      if build.with? 'avalon'
-        ENV["USE_AVALON"] = 1
-      end
+      # TODO: Optional InChI and Avalon support
+      args = ["RDBASE=#{prefix}", "USE_THREADS=1", "CFLAGS='-I#{include}/rdkit'", "THREADLIBS=-L#{HOMEBREW_PREFIX}/lib -lboost_thread-mt -lboost_system"]
       cd "Code/PgSQL/rdkit" do
-        system "make"
+        system "make", *args
         system "make install"
       end
     end
