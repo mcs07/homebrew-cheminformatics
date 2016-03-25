@@ -2,8 +2,8 @@ require 'formula'
 
 class Opsin < Formula
   homepage 'https://bitbucket.org/dan2097/opsin'
-  url 'https://bitbucket.org/dan2097/opsin/downloads/opsin-2.0.0-jar-with-dependencies.jar'
-  sha256 '16cab943f1934dc80fc0c30715ded7c2e1f66c621f6a9c2fc10648dd3c777edb'
+  url 'https://bitbucket.org/dan2097/opsin/downloads/opsin-2.1.0-jar-with-dependencies.jar'
+  sha256 '35462464d0440019ce2da26e3b8fcbb4757997139969c1662bc1f54b760a4785'
 
   head do
     url 'https://bitbucket.org/dan2097/opsin', :using => :hg
