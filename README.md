@@ -40,7 +40,7 @@ For many formulae, there is also a `--HEAD` option to install the latest cutting
 
 ## Open Babel
 
-There is already an (outdated) Open Babel formula in the main homebrew repository, so use the full path to this tap:
+There is already an Open Babel formula in the main homebrew repository. To use the formula in this tap, you will need to specify the full path:
     
     brew install mcs07/cheminformatics/open-babel --HEAD
 
@@ -48,12 +48,21 @@ Getting the latest development version using the `--HEAD` option is also recomme
 
 ## RDKit and Python 3
 
-For Python 3 support in RDKit, install the latest development version using both the `--HEAD` option and the `--with-python3` option.
+RDKit can be built to work with either Python 2 or Python 3, but not both simultaneously. The default is Python 2. For Python 3 support, use the `--with-python3` option.
 
 RDKit can have trouble finding the correct boost-python3 libraries. If you get errors installing RDKit, consider installing boost-python without support for python 2:
     
     brew install boost-python --without-python --with-python3
     brew install rdkit --HEAD --with-python3
+
+## RDKit and virtualenvs
+
+RDKit does not play nice with virtual environments. Running `brew install rdkit` while inside a virtualenv tends not to work properly. To install RDKit in a a virtual environment:
+
+- Run brew install rdkit outside a virtualenv. This will install everything to /usr/local/Cellar/rdkit, and RDKit should work in your main python install outside a virtualenv.
+- Copy the contents of `/usr/local/Cellar/rdkit/20XX.XX.X/lib/python2.7/site-packages` to `~/.virtualenvs/<env>/lib/python2.7/site-packages`. RDKit should then work within that virtualenv.
+
+Every time you update RDKit or python, you will probably have to repeat this process. Not great, but it works.
 
 ## Feedback and requests
 
