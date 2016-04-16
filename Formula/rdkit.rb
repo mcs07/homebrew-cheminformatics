@@ -6,11 +6,11 @@ class Rdkit < Formula
   sha256 "2ad97ec2de97729c483b89cd65470d828a4be84c88305043660cc524a86fd053"
 
   # devel version only needed when there is a beta release
-  # devel do
-  #   url "https://github.com/rdkit/rdkit/archive/Release_2015_03_1beta1.tar.gz"
-  #   version "2015.03.1b1"
-  #   sha256 "0d6acefc71678c7c6b22687a6f508b49c93dc2734f98fd4f235067a4033cb650"
-  # end
+  devel do
+    url "https://github.com/rdkit/rdkit/archive/Release_2016_03_1b1.tar.gz"
+    version "2016.03.1b1"
+    sha256 "3c86af381ef586591368acabd0f67d90877a6944fb38c51a8c532285b31f5980"
+  end
 
   head do
     url "https://github.com/rdkit/rdkit.git"
@@ -43,21 +43,30 @@ class Rdkit < Formula
   def install
     args = std_cmake_parameters.split
     args << "-DRDK_INSTALL_INTREE=OFF"
-
-    # Optionally build Java language bindings
-    if build.with? "java"
-      if not File.exists? "External/java_lib/junit.jar"
-        mkdir "External/java_lib"
-        system "curl http://search.maven.org/remotecontent?filepath=junit/junit/4.11/junit-4.11.jar -o External/java_lib/junit.jar"
-      end
-      args << "-DRDK_BUILD_SWIG_WRAPPERS=ON"
-    end
+    args << "-DRDK_BUILD_SWIG_WRAPPERS=ON"  if build.with? "java"
+    args << "-DRDK_BUILD_AVALON_SUPPORT=ON"  if build.with? "avalon"
+    args << "-DRDK_BUILD_PGSQL=ON"  if build.head? and build.with? "postgresql"
 
     # Optionally build InChI support
     if build.with? "inchi"
       args << "-DRDK_BUILD_INCHI_SUPPORT=ON"
       args << "-DINCHI_INCLUDE_DIR='#{HOMEBREW_PREFIX}/include/inchi/'"
       args << "-DINCHI_LIBRARIES='#{HOMEBREW_PREFIX}/lib/libinchi.dylib'"
+    end
+
+    # Will no longer need to do all this in 2016_03_1
+    if not build.head?
+      if build.with? "java"
+        if not File.exists? "External/java_lib/junit.jar"
+          mkdir "External/java_lib"
+          system "curl http://search.maven.org/remotecontent?filepath=junit/junit/4.11/junit-4.11.jar -o External/java_lib/junit.jar"
+        end
+      end
+      if build.with? "avalon"
+        system "curl -L https://downloads.sourceforge.net/project/avalontoolkit/AvalonToolkit_1.2/AvalonToolkit_1.2.0.source.tar -o External/AvalonTools/avalon.tar"
+        system "tar xf External/AvalonTools/avalon.tar -C External/AvalonTools"
+        args << "-DAVALONTOOLS_DIR='#{buildpath}/External/AvalonTools/SourceDistribution'"
+      end
     end
 
     # Get Python location
@@ -79,14 +88,6 @@ class Rdkit < Formula
     npp = %x(#{pyexec} -c 'import numpy;print(numpy.get_include())').chomp
     args << "-DPYTHON_NUMPY_INCLUDE_PATH='#{npp}'"
 
-    # Optionally build Avalon Tools
-    if build.with? "avalon"
-      system "curl -L https://downloads.sourceforge.net/project/avalontoolkit/AvalonToolkit_1.2/AvalonToolkit_1.2.0.source.tar -o External/AvalonTools/avalon.tar"
-      system "tar xf External/AvalonTools/avalon.tar -C External/AvalonTools"
-      args << "-DRDK_BUILD_AVALON_SUPPORT=ON"
-      args << "-DAVALONTOOLS_DIR='#{buildpath}/External/AvalonTools/SourceDistribution'"
-    end
-
     # Run cmake, make, make install
     args << "."
     system "cmake", *args
@@ -96,14 +97,38 @@ class Rdkit < Formula
     # Remove unneeded cmake files
     rm_f Dir["#{lib}/*.cmake"]
 
+    # Install java files
+    if build.with? "java"
+      libexec.install "Code/JavaWrappers/gmwrapper/org.RDKit.jar"
+      libexec.install "Code/JavaWrappers/gmwrapper/org.RDKitDoc.jar"
+      lib.install "Code/JavaWrappers/gmwrapper/libGraphMolWrap.jnilib"
+    end
+
     # Optionally build PostgreSQL cartridge
     if build.with? "postgresql"
-      # TODO: Optional InChI and Avalon support
-      args = ["RDBASE=#{prefix}", "USE_THREADS=1", "CFLAGS='-I#{include}/rdkit'", "THREADLIBS=-L#{HOMEBREW_PREFIX}/lib -lboost_thread-mt -lboost_system"]
-      cd "Code/PgSQL/rdkit" do
-        system "make", *args
-        system "make install"
+      if build.head?
+        mv "Code/PgSQL/rdkit/rdkit.sql91.in", "Code/PgSQL/rdkit/rdkit--3.4.sql"
+        (share + 'postgresql/extension').install "Code/PgSQL/rdkit/rdkit--3.4.sql"
+        (share + 'postgresql/extension').install "Code/PgSQL/rdkit/rdkit.control"
+        (lib + 'postgresql').install "Code/PgSQL/rdkit/rdkit.so"
+      else
+        args = ["RDBASE=#{prefix}", "USE_THREADS=1", "CFLAGS='-I#{include}/rdkit'", "THREADLIBS=-L#{HOMEBREW_PREFIX}/lib -lboost_thread-mt -lboost_system"]
+        cd "Code/PgSQL/rdkit" do
+          system "make", *args
+          system "make install"
+        end
       end
+    end
+  end
+
+  def caveats
+    if build.with? "java" then <<-EOS.undent
+      The RDKit Jar file has been installed to:
+        #{libexec}/org.RDKit.jar
+      You may need to link the Java bindings into the Java Extensions folder:
+        sudo mkdir -p /Library/Java/Extensions
+        sudo ln -s #{lib}/libGraphMolWrap.jnilib /Library/Java/Extensions/libGraphMolWrap.jnilib
+      EOS
     end
   end
 
