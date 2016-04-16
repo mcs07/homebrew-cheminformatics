@@ -1,28 +1,24 @@
-language: objective-c
-matrix:
-  include:
-    - env: OSX=10.11
-      os: osx
-      osx_image: osx10.11
-      rvm: system
-    - env: OSX=10.10
-      os: osx
-      osx_image: xcode7
-      rvm: system
-    - env: OSX=10.9 HOMEBREW_RUBY=1.8.7
-      os: osx
-      osx_image: beta-xcode6.2
-      rvm: system
+language: ruby
+os: osx
+env: OSX=10.11
+osx_image: xcode7.3
+rvm: system
 
 before_install:
   - if [ -f ".git/shallow" ]; then travis_retry git fetch --unshallow; fi
-  - sudo chown -R $USER $(brew --repo)
-  - brew update
-  - mkdir -p $(brew --repo)/Library/Taps/mcs07
-  - ln -s $PWD $(brew --repo)/Library/Taps/mcs07/homebrew-cheminformatics
-  - cd $(brew --repo)/Library/Taps/mcs07/homebrew-cheminformatics
+  - sudo chown -R "$USER" "$(brew --repo)"
+  - git -C "$(brew --repo)" reset --hard origin/master
+  - git -C "$(brew --repo)" clean -qxdff
+  - brew update || brew update
+  - mkdir -p "$(brew --repo)/Library/Taps/mcs07"
+  - ln -s "$TRAVIS_BUILD_DIR" "$(brew --repo)/Library/Taps/mcs07/homebrew-cheminformatics"
+  - cd "$(brew --repo)/Library/Taps/mcs07/homebrew-cheminformatics"
   - export TRAVIS_BUILD_DIR="$(brew --repo)/Library/Taps/mcs07/homebrew-cheminformatics"
-  - env | grep TRAVIS_
+  - env | grep TRAVIS | tee /tmp/travis.env
+
+install:
+  - export HOMEBREW_DEVELOPER="1"
+  - ulimit -n 1024
 
 script:
-  - brew test-bot --tap=mcs07/cheminformatics --ci-testing
+  - brew test-bot
