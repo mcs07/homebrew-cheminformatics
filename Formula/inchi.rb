@@ -6,24 +6,19 @@ class Inchi < Formula
   mirror 'http://assets.matt-swain.com/homebrew/INCHI-1-API.ZIP'
   version '1.04'
   sha256 'c187573c0f6a1fcd555393315383bd1f69563ee47bd43c898f17c473b7bb690a'
-
-  bottle do
-    root_url "http://assets.matt-swain.com/homebrew"
-    cellar :any
-    sha1 "a27211c7db8b67fb2784562cca515b9da4f4bed7" => :mavericks
-    sha1 "94efa46d4bbe0872e90c173d354037e75001a7e4" => :yosemite
-  end
+  revision 1
 
   # Patch makefile to support Mac OS X
   patch do
-    url "https://gist.github.com/mcs07/6194763/raw/2edc62ed259fa8970a9c9bbd9b937afc2cf45f98/inchi-osx.diff"
-    sha1 "33c09c38e5e45d88fa9a04b4289eb05a6c3b678b"
+    url "https://gist.githubusercontent.com/mcs07/6194763/raw/87dee97c27354a1f3b19c782fcfcbacb798d9ed7/inchi-osx.diff"
+    sha256 "c5c2d6ef71c8ee5b68137de65b8885bbc170f2b5a12a7bc94b5160566ee260fe"
   end
 
   def install
     system 'make -C INCHI_API/gcc_so_makefile ISLINUX=1'
     bin.install 'INCHI_API/gcc_so_makefile/result/inchi_main'
     lib.install 'INCHI_API/gcc_so_makefile/result/libinchi.1.04.00.dylib'
+    lib.install 'INCHI_API/gcc_so_makefile/result/libinchi_static.a'
     lib.install_symlink lib/'libinchi.1.04.00.dylib' => 'libinchi.1.dylib'
     lib.install_symlink lib/'libinchi.1.04.00.dylib' => 'libinchi.dylib'
     (include/'inchi').install Dir['INCHI_API/inchi_dll/*.h']
