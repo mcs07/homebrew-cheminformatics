@@ -6,11 +6,11 @@ class Rdkit < Formula
   sha256 "2ad97ec2de97729c483b89cd65470d828a4be84c88305043660cc524a86fd053"
 
   # devel version only needed when there is a beta release
-  # devel do
-  #   url "https://github.com/rdkit/rdkit/archive/Release_2015_03_1beta1.tar.gz"
-  #   version "2015.03.1b1"
-  #   sha256 "0d6acefc71678c7c6b22687a6f508b49c93dc2734f98fd4f235067a4033cb650"
-  # end
+  devel do
+    url "https://github.com/rdkit/rdkit/archive/Release_2016_03_1b1.tar.gz"
+    version "2016.03.1b1"
+    sha256 "3c86af381ef586591368acabd0f67d90877a6944fb38c51a8c532285b31f5980"
+  end
 
   head do
     url "https://github.com/rdkit/rdkit.git"
