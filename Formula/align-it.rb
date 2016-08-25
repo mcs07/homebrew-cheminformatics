@@ -6,13 +6,6 @@ class AlignIt < Formula
   mirror 'http://assets.matt-swain.com/homebrew/align-it-1.0.4.tar.gz'
   sha256 '63601c67e0d95f5d7c0afdba9e4e74b9d36d7850b0204c8bba096a4257afd7e9'
 
-  bottle do
-    root_url "http://assets.matt-swain.com/homebrew"
-    cellar :any
-    sha1 "df26944b222df242c2cca8aaf6e32825c2667c32" => :mavericks
-    sha1 "31a66985e7c81c8d61185574152482258b8cea46" => :yosemite
-  end
-
   depends_on 'cmake' => :build
   depends_on 'mcs07/cheminformatics/open-babel'
 

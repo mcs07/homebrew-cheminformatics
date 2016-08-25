@@ -6,12 +6,6 @@ class Avalon < Formula
   version "1.2.0"
   sha256 "fbae636280e4d8a682a454086a7622736dd52818d460a2d4514de8ae8cf7d666"
 
-  bottle do
-    root_url "http://assets.matt-swain.com/homebrew"
-    cellar :any
-    sha1 "cfafa32fb50f11f6b22e007a763fd60154e2200d" => :yosemite
-  end
-
   def install
     cd "SourceDistribution" do
       inreplace "makefile", "platform.makefile", "non_windows.makefile"

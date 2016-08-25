@@ -6,13 +6,6 @@ class FilterIt < Formula
   mirror 'http://assets.matt-swain.com/homebrew/filter-it-1.0.2.tar.gz'
   sha256 '386a94f092a1721351afac22f419fa5944c385a1908d6e6ec8b901764913efe0'
 
-  bottle do
-    root_url "http://assets.matt-swain.com/homebrew"
-    cellar :any
-    sha1 "93e3b8f52669021e979e00369dfeae8618d00986" => :mavericks
-    sha1 "2407e58071f0c3c228afeb87fc611f530b2f5d33" => :yosemite
-  end
-
   depends_on 'cmake' => :build
   depends_on 'mcs07/cheminformatics/open-babel'
 
