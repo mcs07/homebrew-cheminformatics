@@ -3,7 +3,7 @@ require 'formula'
 class Chemspot < Formula
   homepage 'https://www.informatik.hu-berlin.de/forschung/gebiete/wbi/resources/chemspot/chemspot/'
   url 'https://www.informatik.hu-berlin.de/forschung/gebiete/wbi/resources/chemspot/chemspot-2.0.zip'
-  sha1 '7b3753bc94d9a9f77b877f27834e470b2bde841c'
+  sha256 '38bc863e7043b50f76b6238f06e2e468f2f5ece9838cc94dc40b2970b2f25fe7'
 
   def install
     libexec.install 'chemspot.jar'
