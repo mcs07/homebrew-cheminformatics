@@ -5,13 +5,6 @@ class Subset < Formula
   url "http://cactus.nci.nih.gov/subset/subset_1.0.tgz"
   sha256 "293d630e1e06009023b3b2a2a6d5dfd5c66eabc0b8a54510a573f364d9da34c3"
 
-  bottle do
-    root_url "http://assets.matt-swain.com/homebrew"
-    cellar :any
-    sha1 "66f6def35f21cc7c54deb6c50f69b074d70c3c46" => :mavericks
-    sha1 "dfabece41bcd37b0237b49940d081696cb4948cf" => :yosemite
-  end
-
   # Patch to skip tests in makefile
   patch do
     url 'https://gist.githubusercontent.com/mcs07/348832e0a6640aa21758/raw/4f8698c103b1ba2b5e01707810f1e187c0495163/subset.diff'
