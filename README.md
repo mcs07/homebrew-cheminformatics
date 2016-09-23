@@ -42,9 +42,9 @@ For many formulae, there is also a `--HEAD` option to install the latest cutting
 
 There is already an Open Babel formula in the main homebrew repository. To use the formula in this tap, you will need to specify the full path:
     
-    brew install mcs07/cheminformatics/open-babel --HEAD
+    brew install mcs07/cheminformatics/open-babel
 
-Getting the latest development version using the `--HEAD` option is also recommended for Open Babel because v2.3.2 requires patching to compile on OS X 10.9 and higher.
+The formulae are very similar. The main difference is that the formula in this tap installs Open Babel in a way that won't clash with other tools that also depend on the InChI library.
 
 ## RDKit and Python 3
 
