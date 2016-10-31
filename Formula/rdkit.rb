@@ -2,15 +2,15 @@ require "formula"
 
 class Rdkit < Formula
   homepage "http://rdkit.org/"
-  url "https://github.com/rdkit/rdkit/archive/Release_2016_03_1.tar.gz"
-  sha256 "c0ab786ba745bb355141875e6b7fcc94a55cb8709fdc3508e38575b228f668f1"
+  url "https://github.com/rdkit/rdkit/archive/Release_2016_03_5.tar.gz"
+  sha256 "a6b33c297626b9db492e044a77c493ecebdecca168bda0ce926b92b64b8992d7"
 
   # devel version only needed when there is a beta release
-  # devel do
-  #   url "https://github.com/rdkit/rdkit/archive/Release_2016_03_1b1.tar.gz"
-  #   version "2016.03.1b1"
-  #   sha256 "3c86af381ef586591368acabd0f67d90877a6944fb38c51a8c532285b31f5980"
-  # end
+  devel do
+    url "https://github.com/rdkit/rdkit/archive/Release_2016_09_1a1.tar.gz"
+    version "2016.09.1a1"
+    sha256 "2fd8d71e3cae6d200d4c4c2f90d4e4b51d633117b67c91b9b745138f0feeccea"
+  end
 
   head do
     url "https://github.com/rdkit/rdkit.git"
@@ -41,7 +41,7 @@ class Rdkit < Formula
   end
 
   def install
-    args = std_cmake_parameters.split
+    args = std_cmake_args
     args << "-DRDK_INSTALL_INTREE=OFF"
     args << "-DRDK_BUILD_SWIG_WRAPPERS=ON" if build.with? "java"
     args << "-DRDK_BUILD_AVALON_SUPPORT=ON" if build.with? "avalon"
@@ -51,7 +51,7 @@ class Rdkit < Formula
     if build.with? "inchi"
       args << "-DRDK_BUILD_INCHI_SUPPORT=ON"
       args << "-DINCHI_INCLUDE_DIR='#{HOMEBREW_PREFIX}/include/inchi/'"
-      args << "-DINCHI_LIBRARIES='#{HOMEBREW_PREFIX}/lib/libinchi.dylib'"
+      args << "-DINCHI_LIBRARIES='inchi'"
     end
 
     # Get Python location
