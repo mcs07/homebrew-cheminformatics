@@ -4,31 +4,14 @@ class Indigo < Formula
 
   homepage 'http://lifescience.opensource.epam.com/indigo/'
 
-  # Add OS X El capitan 10.11 to possible versions
-  patch do
-    url 'https://gist.githubusercontent.com/mcs07/b9b2ccfdb9bc23f60044/raw/632c87764b32b8dad5ff36b9b8d7a77fc7fc0e06/indigo-el-capitan.diff'
-    sha256 '0d7b204819c99b0775a91a529370edfae5d1ed3fc16e37dcb1785db58012005d'
-  end
-
   stable do
-    url 'https://github.com/epam/Indigo/archive/indigo-1.2.1.tar.gz'
-    sha256 'ef28ab89794cc7df44c1fbdff1c7322db71f0feaae2bfe107be9c93dda3b822b'
-
-    # Fix indigo-depict link flags
-    patch do
-      url 'https://gist.githubusercontent.com/mcs07/541bcda4cfd6a7d8668b/raw/c8c4e7e7c68cb2a8f97d49352b565503ae024a81/indigo-depict-1.2.1.diff'
-      sha256 '36ede86428a52c29310ce8a3ac83456575580d7849c6b86e4141e7e6e0ca22c4'
-    end
+    url 'https://github.com/epam/Indigo/archive/indigo-1.3.0beta.tar.gz'
+    version '1.3.0-beta'
+    sha256 'bf5bd7e12cbb904310012e24dffeca43f54d9ebcb0a48ba50987859841eb1d29'
   end
 
   head do
     url 'https://github.com/epam/Indigo.git'
-  end
-
-  devel do
-    url 'https://github.com/epam/Indigo/archive/indigo-1.2.2beta-r37.tar.gz'
-    version '1.2.2beta-r37'
-    sha256 '9f2e1126ce20e003122013c0506154597e7218c5b2ccf44070d555c2b70dfa70'
   end
 
   option 'with-java',   'Build with Java language bindings'
@@ -69,21 +52,20 @@ class Indigo < Formula
     end
 
     if build.with?('java')
-      ver = /SET\(INDIGO_VERSION "(.+?)"/.match(File.read('api/indigo-version.cmake'))[1]
       cd 'api/java' do
-        system "mvn", "versions:set", "-DnewVersion=#{ver}"
+        system "mvn", "versions:set", "-DnewVersion=1.3.0-beta"
         system "mvn", "clean", "package", "install", "-Dmaven.test.skip=true"
-        libexec.install "target/indigo-#{ver}.jar"
+        libexec.install "target/indigo-1.3.0-beta.jar"
       end
       cd 'api/plugins/renderer/java' do
-        system "mvn", "versions:set", "-DnewVersion=#{ver}"
+        system "mvn", "versions:set", "-DnewVersion=1.3.0-beta"
         system "mvn", "clean", "package", "-Dmaven.test.skip=true"
-        libexec.install "target/indigo-renderer-#{ver}.jar"
+        libexec.install "target/indigo-renderer-1.3.0-beta.jar"
       end
       cd 'api/plugins/inchi/java' do
-        system "mvn", "versions:set", "-DnewVersion=#{ver}"
+        system "mvn", "versions:set", "-DnewVersion=1.3.0-beta"
         system "mvn", "clean", "package", "-Dmaven.test.skip=true"
-        libexec.install "target/indigo-inchi-#{ver}.jar"
+        libexec.install "target/indigo-inchi-1.3.0-beta.jar"
       end
       # TODO: Some javadoc bingo bug needs fixing
       # cd 'api/plugins/bingo/java' do
