@@ -1,7 +1,7 @@
 require 'formula'
 
 class Osra < Formula
-  homepage 'http://osra.sourceforge.net'
+  homepage 'https://osra.sourceforge.io'
   url 'https://downloads.sourceforge.net/project/osra/osra/2.1.0/osra-2.1.0.tgz'
   sha256 'd32d38cfdfb70c153b0debe6ea69730c535a422d6a32fbe84508a464b979c138'
 
