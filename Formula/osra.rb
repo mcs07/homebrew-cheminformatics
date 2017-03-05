@@ -13,6 +13,7 @@ class Osra < Formula
 
   option 'with-lib', 'Build libosra library'
   option 'with-ghostscript', 'Build with ghostscript support'
+  option 'with-tesseract', 'Build with tesseract support'
 
   depends_on :java => :optional
   depends_on 'freetype'
@@ -25,6 +26,7 @@ class Osra < Formula
   depends_on 'ocrad'
   depends_on 'tclap'
   depends_on 'poppler'
+  depends_on 'tesseract'
   depends_on 'gocr' => 'with-lib'
   depends_on 'mcs07/cheminformatics/open-babel'
 
@@ -39,14 +41,17 @@ class Osra < Formula
     args = []
     args << "CXXFLAGS=-Wno-c++11-narrowing"
     if build.with? "lib"
-      args << "--enable-lib=yes"
+      args << "--enable-lib"
     end
     if build.with? "java"
       java_home = `/usr/libexec/java_home`.strip
       cppflags = "-I#{java_home}/include -I#{java_home}/include/darwin"
-      args << "--enable-java=yes"
+      args << "--enable-java"
       args << "JAVA_HOME=#{java_home}"
       args << "CPPFLAGS=#{cppflags}"
+    end
+    if build.with? "tesseract"
+      args << "--with-tesseract"
     end
     system "./configure", "--prefix=#{prefix}", *args
     # Set INSTALL_PROGRAM to avoid -s flag because strip fails for some reason
