@@ -1,24 +1,19 @@
 require 'formula'
 
 class Osra < Formula
-  homepage 'http://osra.sourceforge.net'
-  url 'https://downloads.sourceforge.net/project/osra/osra/2.0.1/osra-2.0.1.tgz'
-  sha256 '82757ccceb39d8af61cf51abfa8d03fd3d9910ed80c63182fa01774cd83a7dec'
+  homepage 'https://osra.sourceforge.io'
+  url 'https://downloads.sourceforge.net/project/osra/osra/2.1.0/osra-2.1.0.tgz'
+  sha256 'd32d38cfdfb70c153b0debe6ea69730c535a422d6a32fbe84508a464b979c138'
 
-  # Patch to fix ambiguous call to graphicsmagick adaptiveThreshold
+  # Patch to fix bugs in osra lib
   patch do
-    url 'https://gist.githubusercontent.com/mcs07/7b722cfafe8bad81aa69/raw/8886e5feb2f97183b3117b6a84e46c19c05a807b/osra-adaptiveThreshold.diff'
-    sha256 'f745edb09cee97b76bd7e056e9d54d56e3ee4b92e19b0b2603b7592af70b0c0d'
-  end
-
-  # Remove Makefile.dep from makefile so it compiles without java
-  patch do
-    url 'https://gist.githubusercontent.com/mcs07/20313980c433a2305a07/raw/ed631fe86c7cc9679ff174261f8d7e72e74bfb4f/osra-makefile.diff'
-    sha256 '66b92c872d15688c34d91a39ec48cc31abe030c01ebf041c312e24534757b981'
+    url 'https://gist.githubusercontent.com/mcs07/fa0ade14709f55d4523c9454a193f824/raw/a60adf24166301db29a3e5acf40d3db502f10e44/osra_lib.patch'
+    sha256 '5b02f572a91499bd3bf1be3394f4d33c90687dd3295a8e5789175487401f868a'
   end
 
   option 'with-lib', 'Build libosra library'
   option 'with-ghostscript', 'Build with ghostscript support'
+  option 'with-tesseract', 'Build with tesseract support'
 
   depends_on :java => :optional
   depends_on 'freetype'
@@ -30,6 +25,8 @@ class Osra < Formula
   depends_on 'jpeg'
   depends_on 'ocrad'
   depends_on 'tclap'
+  depends_on 'poppler'
+  depends_on 'tesseract'
   depends_on 'gocr' => 'with-lib'
   depends_on 'mcs07/cheminformatics/open-babel'
 
@@ -42,18 +39,22 @@ class Osra < Formula
   def install
     ENV.deparallelize
     args = []
+    args << "CXXFLAGS=-Wno-c++11-narrowing"
     if build.with? "lib"
-      args << "--enable-lib=yes"
+      args << "--enable-lib"
     end
     if build.with? "java"
       java_home = `/usr/libexec/java_home`.strip
       cppflags = "-I#{java_home}/include -I#{java_home}/include/darwin"
-      args << "--enable-java=yes"
+      args << "--enable-java"
       args << "JAVA_HOME=#{java_home}"
-      args <<"CPPFLAGS=#{cppflags}"
+      args << "CPPFLAGS=#{cppflags}"
+    end
+    if build.with? "tesseract"
+      args << "--with-tesseract"
     end
     system "./configure", "--prefix=#{prefix}", *args
-     # Set INSTALL_PROGRAM to avoid -s flag because strip fails for some reason
+    # Set INSTALL_PROGRAM to avoid -s flag because strip fails for some reason
     system "make", "all", "install", "INSTALL_PROGRAM=${INSTALL}"
   end
 
