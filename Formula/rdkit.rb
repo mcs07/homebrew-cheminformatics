@@ -2,8 +2,8 @@ require "formula"
 
 class Rdkit < Formula
   homepage "http://rdkit.org/"
-  url "https://github.com/rdkit/rdkit/archive/Release_2016_09_3.tar.gz"
-  sha256 "8956d57baadd06e03e6b20266731b66e749b9ff6d6123842bb9f67f0926fb0c7"
+  url "https://github.com/rdkit/rdkit/archive/Release_2016_09_4.tar.gz"
+  sha256 "aa1d7ee6e9b58c9ad31996eb8ef43703d5497781dc3b4067ce6d38cec7cae172"
 
   # devel version only needed when there is a beta release
   # devel do
@@ -21,10 +21,12 @@ class Rdkit < Formula
   option "with-postgresql", "Build with PostgreSQL database cartridge"
   option "with-avalon", "Build with Avalon support"
   option "with-pycairo", "Build with py2cairo/py3cairo support"
+  option "without-numpy", "Use your own numpy instead of Homebrew's numpy"
 
   depends_on "cmake" => :build
   depends_on "swig" => :build if build.with? "java"
   depends_on "boost"
+  depends_on "eigen" => :recommended
   depends_on :python3 => :optional
   depends_on "mcs07/cheminformatics/inchi" => :recommended
   depends_on :postgresql => :optional
@@ -32,11 +34,12 @@ class Rdkit < Formula
   # Different dependencies if building for python3
   if build.with? "python3"
     depends_on "boost-python" => "with-python3"
+    depends_on "numpy" => [:recommended, "with-python3"]
     depends_on "py3cairo" if build.with? "pycairo"
   else
     depends_on :python
     depends_on "boost-python"
-    depends_on "numpy" => :python
+    depends_on "numpy" => :recommended
     depends_on "py2cairo" if build.with? "pycairo"
   end
 
