@@ -2,8 +2,8 @@ require "formula"
 
 class Rdkit < Formula
   homepage "http://rdkit.org/"
-  url "https://github.com/rdkit/rdkit/archive/Release_2016_09_3.tar.gz"
-  sha256 "8956d57baadd06e03e6b20266731b66e749b9ff6d6123842bb9f67f0926fb0c7"
+  url "https://github.com/rdkit/rdkit/archive/Release_2016_09_4.tar.gz"
+  sha256 "aa1d7ee6e9b58c9ad31996eb8ef43703d5497781dc3b4067ce6d38cec7cae172"
 
   # devel version only needed when there is a beta release
   # devel do
@@ -25,6 +25,7 @@ class Rdkit < Formula
   depends_on "cmake" => :build
   depends_on "swig" => :build if build.with? "java"
   depends_on "boost"
+  depends_on "eigen" => :recommended
   depends_on :python3 => :optional
   depends_on "mcs07/cheminformatics/inchi" => :recommended
   depends_on :postgresql => :optional
