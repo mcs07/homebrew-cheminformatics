@@ -18,7 +18,7 @@ class Subset < Formula
     File.open("label_vector.tab", "w") do |f|
       f.write('vector1   1010101010101010101101010101\nvector2   1010101010101010101101010101')
     end
-    system "subset -sim 0.5 < label_vector.tab"
-    system "subset -sim 0.5 -log test.log < label_vector.tab"
+    system "#{bin}/subset -sim 0.5 < label_vector.tab"
+    system "#{bin}/subset -sim 0.5 -log test.log < label_vector.tab"
   end
 end
