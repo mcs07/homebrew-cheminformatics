@@ -1,5 +1,3 @@
-require "formula"
-
 class Checkmol < Formula
   homepage "http://merian.pch.univie.ac.at/~nhaider/cheminf/cmmm.html"
   url "http://merian.pch.univie.ac.at/pch/download/chemistry/checkmol/checkmol-0.5.pas"

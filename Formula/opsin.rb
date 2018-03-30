@@ -1,5 +1,3 @@
-require 'formula'
-
 class Opsin < Formula
   homepage 'https://bitbucket.org/dan2097/opsin'
   url 'https://bitbucket.org/dan2097/opsin/downloads/opsin-2.1.0-jar-with-dependencies.jar'

@@ -1,5 +1,3 @@
-require 'formula'
-
 class EzDyson < Formula
   homepage "http://iopenshell.usc.edu/downloads/ezdyson/"
   url "http://iopenshell.usc.edu/downloads/ezdyson/ezdyson.v3.tar.gz"

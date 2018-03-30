@@ -1,5 +1,3 @@
-require 'formula'
-
 class SpectralHk < Formula
   homepage 'https://bitbucket.org/ncgc/spectral_hk/overview'
   head do

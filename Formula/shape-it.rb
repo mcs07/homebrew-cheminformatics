@@ -1,5 +1,3 @@
-require 'formula'
-
 class ShapeIt < Formula
   homepage 'http://silicos-it.be.s3-website-eu-west-1.amazonaws.com/software/shape-it/1.0.1/shape-it.html'
   url 'http://silicos-it.be.s3-website-eu-west-1.amazonaws.com/_downloads/shape-it-1.0.1.tar.gz'

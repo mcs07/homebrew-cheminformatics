@@ -1,5 +1,3 @@
-require 'formula'
-
 class FilterIt < Formula
   homepage 'http://silicos-it.be.s3-website-eu-west-1.amazonaws.com/software/filter-it/1.0.2/filter-it.html'
   url 'http://silicos-it.be.s3-website-eu-west-1.amazonaws.com/_downloads/filter-it-1.0.2.tar.gz'

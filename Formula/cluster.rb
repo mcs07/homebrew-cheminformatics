@@ -1,5 +1,3 @@
-require "formula"
-
 class Cluster < Formula
   homepage "http://bonsai.hgc.jp/~mdehoon/software/cluster/software.htm"
   url "http://bonsai.hgc.jp/~mdehoon/software/cluster/cluster-1.52a.tar.gz"

@@ -1,5 +1,3 @@
-require 'formula'
-
 class Inchi < Formula
   homepage 'http://www.inchi-trust.org/downloads/'
   url 'http://www.inchi-trust.org/download/104/INCHI-1-API.zip'

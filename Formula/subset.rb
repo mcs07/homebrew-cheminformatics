@@ -1,5 +1,3 @@
-require "formula"
-
 class Subset < Formula
   homepage "http://cactus.nci.nih.gov/subset/"
   url "http://cactus.nci.nih.gov/subset/subset_1.0.tgz"

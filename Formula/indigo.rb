@@ -1,5 +1,3 @@
-require 'formula'
-
 class Indigo < Formula
 
   homepage 'http://lifescience.opensource.epam.com/indigo/'

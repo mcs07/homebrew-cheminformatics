@@ -1,5 +1,3 @@
-require "formula"
-
 class CustomZipDownloadStrategy < CurlDownloadStrategy
   def stage
     begin

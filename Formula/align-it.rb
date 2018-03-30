@@ -1,5 +1,3 @@
-require 'formula'
-
 class AlignIt < Formula
   homepage 'http://silicos-it.be.s3-website-eu-west-1.amazonaws.com/software/align-it/1.0.4/align-it.html'
   url 'http://silicos-it.be.s3-website-eu-west-1.amazonaws.com/_downloads/align-it-1.0.4.tar.gz'

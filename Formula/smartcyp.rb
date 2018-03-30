@@ -1,5 +1,3 @@
-require "formula"
-
 class Smartcyp < Formula
   homepage "http://www.farma.ku.dk/smartcyp/"
   url "http://www.farma.ku.dk/smartcyp/smartcyp.jar"

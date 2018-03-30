@@ -1,5 +1,3 @@
-require "formula"
-
 class Critic2 < Formula
   homepage "http://gatsby.ucmerced.edu/wiki/Critic2"
 

@@ -1,5 +1,3 @@
-require 'formula'
-
 class ChemistryDevelopmentKit < Formula
   homepage 'http://cdk.sf.net/'
   url 'https://downloads.sourceforge.net/project/cdk/cdk%20%28development%29/1.5.12/cdk-1.5.12.jar'

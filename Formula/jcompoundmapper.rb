@@ -1,5 +1,3 @@
-require 'formula'
-
 class Jcompoundmapper < Formula
   homepage 'http://jcompoundmapper.sourceforge.net'
   url 'https://downloads.sourceforge.net/project/jcompoundmapper/jCMapperCLI.jar'

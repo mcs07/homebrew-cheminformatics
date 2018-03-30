@@ -1,5 +1,3 @@
-require 'formula'
-
 class Avalon < Formula
   homepage "http://sourceforge.net/projects/avalontoolkit/"
   url "https://downloads.sourceforge.net/project/avalontoolkit/AvalonToolkit_1.2/AvalonToolkit_1.2.0.source.tar"

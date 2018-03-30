@@ -1,5 +1,3 @@
-require 'formula'
-
 class Osra < Formula
   homepage 'https://osra.sourceforge.io'
   url 'https://downloads.sourceforge.net/project/osra/osra/2.1.0/osra-2.1.0.tgz'

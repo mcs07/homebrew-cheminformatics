@@ -1,5 +1,3 @@
-require "formula"
-
 class Rdkit < Formula
   homepage "http://rdkit.org/"
   url "https://github.com/rdkit/rdkit/archive/Release_2017_09_3.tar.gz"
