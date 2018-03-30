@@ -1,7 +1,7 @@
 class Opsin < Formula
   homepage 'https://bitbucket.org/dan2097/opsin'
-  url 'https://bitbucket.org/dan2097/opsin/downloads/opsin-2.1.0-jar-with-dependencies.jar'
-  sha256 '35462464d0440019ce2da26e3b8fcbb4757997139969c1662bc1f54b760a4785'
+  url 'https://bitbucket.org/dan2097/opsin/downloads/opsin-2.3.1-jar-with-dependencies.jar'
+  sha256 '1dd5b02834552454593068b9a2fe30e85aa3e378e24df3cdd83ca54341532c61'
 
   head do
     url 'https://bitbucket.org/dan2097/opsin', :using => :hg
@@ -30,8 +30,8 @@ class Opsin < Formula
   end
 
   test do
-    system "opsin -h"
-    system "echo '2,4,6-trinitrotoluene' | opsin"
-    system "echo 'water' | opsin -o inchi"
+    system "#{bin}/opsin -h"
+    system "echo '2,4,6-trinitrotoluene' | #{bin}/opsin"
+    system "echo 'water' | #{bin}/opsin -o inchi"
   end
 end
