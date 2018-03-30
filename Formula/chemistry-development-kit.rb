@@ -1,7 +1,7 @@
 class ChemistryDevelopmentKit < Formula
-  homepage 'http://cdk.sf.net/'
-  url 'https://downloads.sourceforge.net/project/cdk/cdk%20%28development%29/1.5.12/cdk-1.5.12.jar'
-  sha256 '25afb8e770fec3da988a3e4f0bab01b6eecba29e94747ff81318d628d7b42213'
+  homepage 'https://cdk.sourceforge.io/'
+  url 'https://downloads.sourceforge.net/project/cdk/cdk/2.0/cdk-2.0.jar'
+  sha256 '71b752919ef1fb2e9d8e42d10b378e8f4c17ac6c0b51a34409b6178cab253d82'
 
   head do
     url 'https://github.com/cdk/cdk.git'
@@ -16,7 +16,7 @@ class ChemistryDevelopmentKit < Formula
         libexec.install 'target/cdk.jar'
       end
     else
-      mv 'cdk-1.5.12.jar', 'cdk.jar'
+      mv 'cdk-2.0.jar', 'cdk.jar'
       libexec.install 'cdk.jar'
     end
   end
