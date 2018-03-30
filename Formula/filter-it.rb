@@ -3,7 +3,6 @@ require 'formula'
 class FilterIt < Formula
   homepage 'http://silicos-it.be.s3-website-eu-west-1.amazonaws.com/software/filter-it/1.0.2/filter-it.html'
   url 'http://silicos-it.be.s3-website-eu-west-1.amazonaws.com/_downloads/filter-it-1.0.2.tar.gz'
-  mirror 'http://assets.matt-swain.com/homebrew/filter-it-1.0.2.tar.gz'
   sha256 '386a94f092a1721351afac22f419fa5944c385a1908d6e6ec8b901764913efe0'
 
   depends_on 'cmake' => :build

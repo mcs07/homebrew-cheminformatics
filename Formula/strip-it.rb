@@ -3,7 +3,6 @@ require 'formula'
 class StripIt < Formula
   homepage 'http://silicos-it.be.s3-website-eu-west-1.amazonaws.com/software/strip-it/1.0.2/strip-it.html'
   url 'http://silicos-it.be.s3-website-eu-west-1.amazonaws.com/_downloads/strip-it-1.0.2.tar.gz'
-  mirror 'http://assets.matt-swain.com/homebrew/strip-it-1.0.2.tar.gz'
   sha256 '02525444e75ceb6fcb9f218e53d6ad76a3f829a96913a86040fd180ded880131'
 
   depends_on 'cmake' => :build
