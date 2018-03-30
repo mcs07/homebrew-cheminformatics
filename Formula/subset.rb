@@ -1,6 +1,6 @@
 class Subset < Formula
-  homepage "http://cactus.nci.nih.gov/subset/"
-  url "http://cactus.nci.nih.gov/subset/subset_1.0.tgz"
+  homepage "https://cactus.nci.nih.gov/subset/"
+  url "https://cactus.nci.nih.gov/subset/subset_1.0.tgz"
   sha256 "293d630e1e06009023b3b2a2a6d5dfd5c66eabc0b8a54510a573f364d9da34c3"
 
   # Patch to skip tests in makefile
