@@ -1,6 +1,6 @@
 class Chargemol < Formula
-  homepage "http://ddec.sourceforge.net"
-  url "https://ddec.sourceforge.io/project/ddec/chargemol_09_26_2017.zip"
+  homepage "https://ddec.sourceforge.io"
+  url "https://downloads.sourceforge.net/project/ddec/chargemol_09_26_2017.zip"
   version "09_26_2017"
   sha256 "3aec3805536d8b1f4b5b2bbbab3a20a1eff3cfa830aca24ad3d39d03eae0a95b"
 
