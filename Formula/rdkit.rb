@@ -2,8 +2,8 @@ require "formula"
 
 class Rdkit < Formula
   homepage "http://rdkit.org/"
-  url "https://github.com/rdkit/rdkit/archive/Release_2017_03_3.tar.gz"
-  sha256 "fd9f1fb51c75c6d44f8d5a5de46139af82ed22e93f90bfdf788e2a4096fd897c"
+  url "https://github.com/rdkit/rdkit/archive/Release_2017_09_3.tar.gz"
+  sha256 "6a4d9e9eb0ca06cbcdc20505f0c6ea0b1167b4dcdf7d1185871ba16ce701a5f4"
 
   # devel version only needed when there is a beta release
   # devel do
@@ -22,24 +22,25 @@ class Rdkit < Formula
   option "with-avalon", "Build with Avalon support"
   option "with-pycairo", "Build with py2cairo/py3cairo support"
   option "without-numpy", "Use your own numpy instead of Homebrew's numpy"
+  
+  deprecated_option 'with-python3' => 'with-python'
 
   depends_on "cmake" => :build
   depends_on "swig" => :build if build.with? "java"
   depends_on "boost"
   depends_on "eigen" => :recommended
-  depends_on :python3 => :optional
+  depends_on "python" => :optional
   depends_on "mcs07/cheminformatics/inchi" => :recommended
-  depends_on :postgresql => :optional
+  depends_on "postgresql" => :optional
+  depends_on "numpy" => :recommended
 
   # Different dependencies if building for python3
-  if build.with? "python3"
-    depends_on "boost-python" => "with-python3"
-    depends_on "numpy" => [:recommended, "with-python3"]
+  if build.with? "python"
+    depends_on "boost-python3"
     depends_on "py3cairo" if build.with? "pycairo"
   else
-    depends_on :python
+    depends_on "python@2"
     depends_on "boost-python"
-    depends_on "numpy" => :recommended
     depends_on "py2cairo" if build.with? "pycairo"
   end
 
@@ -58,7 +59,7 @@ class Rdkit < Formula
     end
 
     # Get Python location
-    pyexec = if build.with? "python3" then `which python3`.strip else `which python`.strip end
+    pyexec = if build.with? "python" then `which python3`.strip else `which python`.strip end
     pypref = %x(#{pyexec} -c 'import sys;print(sys.prefix)').chomp
     pyinc = %x(#{pyexec} -c 'from distutils import sysconfig;print(sysconfig.get_python_inc(True))').chomp
     pyvers = "python" + %x(#{pyexec} -c 'import sys;print(sys.version[:3])').chomp
