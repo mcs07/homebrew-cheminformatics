@@ -1,61 +1,48 @@
-class CustomZipDownloadStrategy < CurlDownloadStrategy
-  def stage
-    begin
-      with_system_path { quiet_safe_system "unzip", {:quiet_flag => "-qq"}, tarball_path }
-    rescue ErrorDuringExecution
-      ohai "Ignoring unzip errors"
-    ensure
-      chdir
-    end
-  end
-end
-
 class Chargemol < Formula
   homepage "http://ddec.sourceforge.net"
-  url "https://downloads.sourceforge.net/project/ddec/chargemol_08_02_2015b.zip"
-  version "08_02_2015b"
-  sha256 "3f336fe16076e76bec6de6894dcb75d4c7afe99bc0265145de1d803ffb03aaab"
+  url "https://ddec.sourceforge.io/project/ddec/chargemol_09_26_2017.zip"
+  version "09_26_2017"
+  sha256 "3aec3805536d8b1f4b5b2bbbab3a20a1eff3cfa830aca24ad3d39d03eae0a95b"
 
   depends_on "gcc"
 
   def install
-    cd "chargemol_FORTRAN_08_02_2015/sourcecode" do
+    cd "chargemol_FORTRAN_09_26_2017/sourcecode_linux" do
       # This should match the contents of compile_serial.txt
       # parallel compile does not work for some reason
-      system ENV["FC"], "-ochargemol", "-static-libgfortran", "precise.f08", "global_parameters.f08",
-        "common_variable_declarations.f08", "module_quote.f08", "String_Utility.f08", "matrix_operations.f08",
-        "module_CM5_parameters.f08", "module_calculate_atomic_polarizabilities_upper_bound.f08",
-        "module_read_job_control.f08", "module_read_wfx.f08", "gaussian_functions.f08",
-        "module_compute_CM5_parameters.f08", "module_check_atomic_reference_polarizabilities_available.f08",
-        "charge_center_positions_and_parallelpiped.f08", "module_generate_kApoints_kBpoints_kCpoints.f08",
-        "module_check_grid_spacing.f08", "module_add_missing_core_density.f08", "module_oxidation_density.f08",
-        "module_initialize_atomic_densities.f08", "module_align_periodic_atoms.f08",
-        "module_format_valence_and_total_cube_densities.f08", "module_format_valence_cube_density.f08",
-        "module_format_xsf_densities.f08", "module_format_total_cube_density.f08",
-        "module_check_noncollinear_XC_functional.f08", "module_gen_dens_grids_from_gaussian_basis_set_coeff.f08",
-        "module_atomic_symbol_to_number.f08", "module_compute_dominant_atom_volumes.f08",
-        "module_format_vasp_densities.f08", "module_run_valence_core_densities.f08", "module_core_iterator.f08",
-        "module_local_multipole_moment_analysis.f08", "module_update_atomic_densities.f08",
-        "module_DDEC3_valence_iterator.f08", "module_DDEC5_valence_iterator.f08", "module_compute_center_of_mass.f08",
-        "module_total_multipole_moment_analysis.f08", "module_cloud_penetration.f08",
-        "module_atomic_number_to_symbol.f08", "module_generate_atomic_polarizability_upper_bound_file.f08",
-        "module_generate_net_atomic_charge_file.f08", "Xi_mod.f08", "module_generate_spin_lookup_tables.f08",
-        "module_fast_calculate_functions.f08", "module_calculate_theta_scalar.f08",
-        "module_generate_atomic_spin_moment_file.f08", "module_collinear_spin_moments_iterator.f08",
-        "module_calculate_theta_vector.f08", "module_noncollinear_spin_moments_iterator.f08",
-        "module_calculate_sphere_sphere_intersection_volume.f08", "module_confinement_function.f08",
-        "module_generate_effective_bond_order_file.f08", "module_determine_wether_pair_overlap_is_significant.f08",
-        "module_calculate_final_EBOs.f08", "module_update_bond_pair_matrix.f08",
-        "module_compute_comp_zero_atomic_valences_and_overlap_terms.f08", "module_initialize_bond_pair_matrix.f08",
-        "module_compute_local_atomic_exchange_vectors.f08", "module_prepare_EBO_density_grids.f08",
-        "module_statistical_EBO_coefficients.f08", "module_perform_EBO_analysis.f08",
-        "module_compute_atomic_Rcubed_moments.f08", "chargemol.f08"
+      system "gfortran", "-ochargemol", "-static-libgfortran", "module_precision.f08", "module_global_parameters.f08", 
+        "module_common_variable_declarations.f08", "module_quote.f08", "module_string_utilities.f08", 
+        "module_matrix_operations.f08", "module_reshaping_functions.f08", "module_CM5_parameters.f08", 
+        "module_calculate_atomic_polarizabilities_upper_bound.f08", "module_read_job_control.f08", 
+        "module_read_wfx.f08", "module_gaussian_functions.f08", "module_compute_CM5.f08", 
+        "module_check_atomic_reference_polarizabilities_available.f08", 
+        "module_charge_center_positions_and_parallelpiped.f08", "module_generate_kApoints_kBpoints_kCpoints.f08", 
+        "module_check_grid_spacing.f08", "module_add_missing_core_density.f08", "module_oxidation_density.f08", 
+        "module_initialize_atomic_densities.f08", "module_align_periodic_atoms.f08", 
+        "module_read_spin_density_cube_files.f08", "module_format_valence_and_total_cube_densities.f08", 
+        "module_format_valence_cube_density.f08", "module_format_total_cube_density.f08", 
+        "module_format_xsf_densities.f08", "module_check_noncollinear_XC_functional.f08", 
+        "module_gen_dens_grids_from_gaussian_basis_set_coeff.f08", "module_atomic_symbol_to_number.f08", 
+        "module_compute_dominant_atom_volumes.f08", "module_format_vasp_densities.f08", 
+        "module_run_valence_core_densities.f08", "module_core_iterator.f08", 
+        "module_local_multipole_moment_analysis.f08", "module_update_atomic_densities.f08", 
+        "module_DDEC3_valence_iterator.f08", "module_DDEC6_valence_iterator.f08", "module_compute_center_of_mass.f08", 
+        "module_total_multipole_moment_analysis.f08", "module_cloud_penetration.f08", 
+        "module_atomic_number_to_symbol.f08", "module_generate_atomic_polarizability_upper_bound_file.f08", 
+        "module_generate_net_atomic_charge_file.f08", "module_spin_functions.f08", 
+        "module_generate_atomic_spin_moment_file.f08", "module_collinear_spin_moments_iterator.f08", 
+        "module_noncollinear_spin_moments_iterator.f08", "module_generate_bond_order_file.f08", 
+        "module_determine_whether_pair_overlap_is_significant.f08", "module_calculate_final_BOs.f08", 
+        "module_integrate_bonding_terms.f08", "module_initialize_bond_pair_matrix.f08", 
+        "module_compute_local_atomic_exchange_vectors.f08", "module_prepare_BO_density_grids.f08", 
+        "module_perform_bond_order_analysis.f08", "module_compute_atomic_radial_moments.f08", 
+        "module_print_overlap_populations.f08", "module_print_atomic_densities_file.f08", "chargemol.f08"
       bin.install "chargemol"
     end
     (share/"chargemol").install "atomic_densities"
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     Atomic densities have been installed to:
       #{share}/chargemol/atomic_densities/
     EOS
