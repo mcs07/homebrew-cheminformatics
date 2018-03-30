@@ -7,13 +7,13 @@ class Chemspot < Formula
     libexec.install 'chemspot.jar'
     (share/'chemspot').install 'dict.zip'
     (share/'chemspot').install 'ids.zip'
-    (bin+'chemspot').write <<-EOS.undent
+    (bin+'chemspot').write <<~EOS
       #!/bin/sh
       java -jar -Xmx16G "#{libexec}/chemspot.jar" -d "#{share}/chemspot/dict.zip"  -i "#{share}/chemspot/ids.zip"  "$@"
     EOS
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     The ChemSpot jar file has been installed to:
       #{libexec}/chemspot.jar
     You may wish to add this to the java CLASSPATH environment variable.

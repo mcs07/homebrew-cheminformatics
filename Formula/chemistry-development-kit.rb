@@ -21,7 +21,7 @@ class ChemistryDevelopmentKit < Formula
     end
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     The CDK jar file has been installed to:
       #{libexec}/cdk.jar
     You may wish to add this to the java CLASSPATH environment variable.

@@ -9,7 +9,7 @@ class Smartcyp < Formula
     bin.write_jar_script libexec/'smartcyp.jar', 'smartcyp'
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     The SMARTCyp jar file is installed to:
       #{libexec}/smartcyp.jar
     You may wish to add this to the java CLASSPATH environment variable.
@@ -18,7 +18,7 @@ class Smartcyp < Formula
   end
 
   test do
-    mol =<<-EOS.undent
+    mol =<<~EOS
       Azulene
         CDK
 

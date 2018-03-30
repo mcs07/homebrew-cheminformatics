@@ -77,7 +77,7 @@ class Indigo < Formula
 
   def caveats
     if build.with? 'java'
-      s = <<-EOS.undent
+      s = <<~EOS
         Java language bindings have been installed to:
             #{libexec}
         You may wish to add them to the java CLASSPATH environment variable.

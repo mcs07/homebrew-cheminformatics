@@ -11,7 +11,7 @@ class LillyMedchemRules < Formula
     prefix.install Dir['*']
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     Lilly Medchem Rules are installed to:
       #{prefix}
     Typical usage:

@@ -9,7 +9,7 @@ class Jcompoundmapper < Formula
     bin.write_jar_script libexec/'jCMapperCLI.jar', 'jcmapper'
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     The jCMapperCLI jar file has been installed to:
       #{libexec}/jCMapperCLI.jar
     You may wish to add this to the java CLASSPATH environment variable.
@@ -21,7 +21,7 @@ class Jcompoundmapper < Formula
   end
 
   test do
-    mol =<<-EOS.undent
+    mol =<<~EOS
       Azulene
         CDK
 

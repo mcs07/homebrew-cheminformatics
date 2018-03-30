@@ -20,7 +20,7 @@ class Opsin < Formula
     bin.write_jar_script libexec/'opsin.jar', 'opsin'
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     The OPSIN jar file has been installed to:
       #{libexec}/opsin.jar
     You may wish to add this to the java CLASSPATH environment variable.

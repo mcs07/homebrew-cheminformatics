@@ -22,7 +22,7 @@ class EzDyson < Formula
     system "#{bin}/exedys test_input.xml"
   end
 
-  def test_input; <<-EOF.undent
+  def test_input; <<~EOS
     <?xml version="1.0" encoding="ISO-8859-1"?>
     <root job="dyson">
       <geometry n_of_atoms="1" text="       F       0.0000000000     0.0000000000     0.0000000000    "/>

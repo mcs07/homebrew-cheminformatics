@@ -101,7 +101,7 @@ class Rdkit < Formula
   end
 
   def caveats
-    if build.with? "java" then <<-EOS.undent
+    if build.with? "java" then <<~EOS
       The RDKit Jar file has been installed to:
         #{libexec}/org.RDKit.jar
       You may need to link the Java bindings into the Java Extensions folder:
@@ -112,7 +112,7 @@ class Rdkit < Formula
   end
 
   test do
-    (testpath/"rdtest.cpp").write <<-EOS.undent
+    (testpath/"rdtest.cpp").write <<~EOS
       #include <GraphMol/RDKitBase.h>
       #include <GraphMol/SmilesParse/SmilesParse.h>
       using namespace RDKit;
