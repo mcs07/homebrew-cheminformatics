@@ -29,6 +29,6 @@ class Chemspot < Formula
     File.open("input.txt", "w") do |f|
       f.write('Acetonitrile and sodium hydroxide.')
     end
-    system 'chemspot -t input.txt -Io predict.iob'
+    system '#{bin}/chemspot -t input.txt -Io predict.iob'
   end
 end
