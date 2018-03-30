@@ -7,18 +7,18 @@ class Indigo < Formula
   stable do
     url 'https://github.com/epam/Indigo/archive/indigo-1.3.0beta.tar.gz'
     version '1.3.0-beta'
-    sha256 'bf5bd7e12cbb904310012e24dffeca43f54d9ebcb0a48ba50987859841eb1d29'
+    sha256 '135a8a8b9ccb78e550359a29f7f41ff5d0ab201dbb13d47e44b98731c0243fe9'
   end
 
   head do
     url 'https://github.com/epam/Indigo.git'
   end
 
-  option 'with-java',   'Build with Java language bindings'
-  option 'with-python', 'Build with Python language bindings'
+  option 'with-java', 'Build with Java language bindings'
+  option 'with-python@2', 'Build with Python language bindings'
 
   depends_on 'cmake' => :build
-  depends_on :python => :optional
+  depends_on 'python@2' => :optional
   depends_on 'maven' if build.with? 'java'
 
   def install
@@ -43,7 +43,7 @@ class Indigo < Formula
     include.install 'api/plugins/renderer/indigo-renderer.h'
     include.install 'api/plugins/bingo/bingo.h'
 
-    if build.with?('python')
+    if build.with?('python@2')
       pyvers = "python" + %x(python -c 'import sys;print(sys.version[:3])').chomp
       (lib/"#{pyvers}/site-packages").install 'api/python/indigo.py'
       (lib/"#{pyvers}/site-packages").install 'api/plugins/inchi/python/indigo_inchi.py'
