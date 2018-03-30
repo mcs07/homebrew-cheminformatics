@@ -9,7 +9,7 @@ class Critic2 < Formula
 
   option "with-libxc", "Build with libxc support to calculate exchange and correlation energy densities"
 
-  depends_on :fortran
+  depends_on "gcc"
   depends_on "libxc" => :optional
 
   def install

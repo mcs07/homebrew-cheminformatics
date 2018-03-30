@@ -18,7 +18,7 @@ class Chargemol < Formula
   version "08_02_2015b"
   sha256 "3f336fe16076e76bec6de6894dcb75d4c7afe99bc0265145de1d803ffb03aaab"
 
-  depends_on :fortran
+  depends_on "gcc"
 
   def install
     cd "chargemol_FORTRAN_08_02_2015/sourcecode" do
